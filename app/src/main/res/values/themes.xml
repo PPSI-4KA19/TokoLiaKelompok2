@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.TokoLia" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Warna dasar untuk light theme -->
+        <item name="colorPrimary">@color/mainorange</item>
+        <item name="colorPrimaryVariant">@color/mainorange</item>
+        <item name="colorOnPrimary">@color/white</item>
     </style>
 
     <style name="Theme.TokoLia" parent="Base.Theme.TokoLia" />
