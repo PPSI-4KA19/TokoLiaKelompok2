@@ -7,5 +7,9 @@
         <item name="colorOnPrimary">@color/white</item>
     </style>
 
+    <style name="PoppinsFontTitle">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
     <style name="Theme.TokoLia" parent="Base.Theme.TokoLia" />
 </resources>
