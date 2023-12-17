@@ -49,13 +49,15 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
+        app:layout_constraintVertical_bias="0.063">
 
         <GridView
             android:id="@+id/gridKategori"
             android:layout_width="match_parent"
-            android:layout_height="370dp"
+            android:layout_height="450dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
             android:numColumns="2"
