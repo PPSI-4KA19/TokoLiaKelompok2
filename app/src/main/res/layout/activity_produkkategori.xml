@@ -4,33 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:outlineSpotShadowColor="#473E3E"
     tools:context=".produkkategori">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/materialToolbar2"
+            android:id="@+id/kategoriToolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:layout_height="100dp"
+            android:background="?attr/colorOnPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:title="@string/app_name"
+            app:buttonGravity="center_vertical"
+            app:menu="@menu/toolbar_menu"
+            app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
+            app:title="Kategori Produk"
             app:titleMarginStart="30dp"
-            app:titleTextAppearance="@style/TextAppearance.AppCompat.Large"
-            app:titleTextColor="?attr/colorOnPrimary" />
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title2"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <View
+        android:id="@+id/view"
+        style="@style/Divider"
+        android:background="@color/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
 
         <GridView
@@ -48,8 +67,9 @@
             android:id="@+id/buttonTambahKategori"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_medium"
             android:gravity="center"
+            android:outlineSpotShadowColor="#372E2E"
             android:text="Tambah Kategori"
             android:textSize="20sp"
             app:cornerRadius="15dp" />
@@ -60,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:text="Tambah Produk"
             android:textSize="20sp"

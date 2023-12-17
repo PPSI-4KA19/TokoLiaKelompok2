@@ -4,29 +4,34 @@
     >
 
     <item
+        android:id="@+id/dasbor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Dasbor"
         app:showAsAction="collapseActionView" />
     <item
+        android:id="@+id/transaksi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Transaksi"
-        app:showAsAction="collapseActionView"/>
+        app:showAsAction="collapseActionView" />
     <item
+        android:id="@+id/produk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Produk"
-        app:showAsAction="collapseActionView"/>
+        app:showAsAction="collapseActionView" />
     <item
+        android:id="@+id/restok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Restok"
-        app:showAsAction="collapseActionView"/>
+        app:showAsAction="collapseActionView" />
     <item
+        android:id="@+id/hutang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Hutang"
-        app:showAsAction="collapseActionView"/>
+        app:showAsAction="collapseActionView" />
 
 </menu>

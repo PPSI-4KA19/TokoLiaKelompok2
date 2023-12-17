@@ -6,4 +6,5 @@
     <color name="lightorange">#FFFFEADB</color>
     <color name="redish">#FFE13030</color>
     <color name="lightorangebg2">#FFFFF5F5</color>
+    <color name="divider">#80494848</color>
 </resources>

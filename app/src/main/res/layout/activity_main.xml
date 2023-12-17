@@ -8,18 +8,19 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:gravity="center_vertical"
+        android:layout_height="100dp"
+        android:background="?attr/colorOnPrimary"
+        android:paddingEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/mainToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:background="?attr/colorPrimary"
+            android:background="?attr/colorOnPrimary"
             android:gravity="center_vertical"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -27,9 +28,17 @@
             app:menu="@menu/toolbar_menu"
             app:title="@string/app_name"
             app:titleMarginStart="30dp"
-            app:titleTextAppearance="@style/TextAppearance.AppCompat.Large"
-            app:titleTextColor="?attr/colorOnPrimary" />
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            app:titleTextColor="?attr/colorPrimary" />
+
     </com.google.android.material.appbar.AppBarLayout>
+
+    <View
+        style="@style/Divider"
+        android:background="@color/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -99,12 +108,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
-            android:background="@color/lightorange"
+            android:background="@drawable/background_recycler"
             android:baselineAligned="false"
             android:clipToOutline="false"
             android:elevation="3dp"
             android:orientation="vertical"
-            android:outlineProvider="bounds"
             android:padding="10dp">
 
             <TextView
@@ -150,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
-            android:background="@color/lightorange"
+            android:background="@drawable/background_recycler"
             android:elevation="3dp"
             android:orientation="vertical"
             android:padding="10dp">
@@ -198,7 +206,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
-            android:background="@color/lightorange"
+            android:background="@drawable/background_recycler"
             android:elevation="3dp"
             android:orientation="vertical"
             android:padding="10dp">

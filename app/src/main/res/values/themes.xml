@@ -5,11 +5,27 @@
         <item name="colorPrimary">@color/mainorange</item>
         <item name="colorPrimaryVariant">@color/mainorange</item>
         <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorSecondary">@color/lightorange</item>
+        <item name="colorSecondaryVariant">@color/lightorange</item>
+        <item name="colorOnSecondary">@color/mainorange</item>
     </style>
 
-    <style name="PoppinsFontTitle">
-        <item name="android:fontFamily">@font/poppins_bold</item>
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/seymour_one</item>
+        <item name="android:textSize">25sp</item>
     </style>
-
+    
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title2" parent="@android:style/TextAppearance">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+    
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="colorOnBackground">@color/black</item>
+    </style>
+    
     <style name="Theme.TokoLia" parent="Base.Theme.TokoLia" />
 </resources>
