@@ -3,36 +3,34 @@ package com.example.tokolia;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "transaksi_produk")
+@Entity(tableName = "transaksi_produk", primaryKeys = {"id_transaksi","id_produk"})
 public class TransaksiProduk {
 
-    @PrimaryKey
-    String id_transaksi;
-    @PrimaryKey
-    String id_produk;
+    int id_transaksi;
+    int id_produk;
     int quantity;
     int total;
 
-    public TransaksiProduk(String id_transaksi, String id_produk, int quantity, int total) {
+    public TransaksiProduk(int id_transaksi, int id_produk, int quantity, int total) {
         this.id_transaksi = id_transaksi;
         this.id_produk = id_produk;
         this.quantity = quantity;
         this.total = total;
     }
 
-    public String getId_transaksi() {
+    public int getId_transaksi() {
         return id_transaksi;
     }
 
-    public void setId_transaksi(String id_transaksi) {
+    public void setId_transaksi(int id_transaksi) {
         this.id_transaksi = id_transaksi;
     }
 
-    public String getId_produk() {
+    public int getId_produk() {
         return id_produk;
     }
 
-    public void setId_produk(String id_produk) {
+    public void setId_produk(int id_produk) {
         this.id_produk = id_produk;
     }
 

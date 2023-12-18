@@ -13,8 +13,8 @@ public class Produk {
     int harga_jual;
     int harga_modal;
 
-    public Produk(String nama,int harga_jual,int harga_modal){
-        this.nama_produk = nama;
+    public Produk(String nama_produk,int harga_jual,int harga_modal){
+        this.nama_produk = nama_produk;
         this.harga_jual = harga_jual;
         this.harga_modal = harga_modal;
     }

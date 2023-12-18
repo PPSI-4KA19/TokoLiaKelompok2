@@ -1,14 +1,14 @@
 package com.example.tokolia;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "kategoriproduk")
+@Entity(tableName = "kategoriproduk",primaryKeys = {"nama_kategori","id_produk"})
 public class KategoriProduk {
 
-    @PrimaryKey(autoGenerate = false)
+    @NonNull
     String nama_kategori;
-    @PrimaryKey(autoGenerate = false)
     int id_produk;
 
     public KategoriProduk(String nama_kategori, int id_produk) {

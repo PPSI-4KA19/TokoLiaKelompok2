@@ -10,10 +10,10 @@ public class Transaksi {
 
     @PrimaryKey(autoGenerate = true)
     int id_transaksi;
-    Date tanggal;
+    String tanggal;
     String jenis_transaksi;
 
-    public Transaksi(Date tanggal, String jenis_transaksi) {
+    public Transaksi(String tanggal, String jenis_transaksi) {
         this.tanggal = tanggal;
         this.jenis_transaksi = jenis_transaksi;
     }
@@ -22,11 +22,11 @@ public class Transaksi {
         return id_transaksi;
     }
 
-    public Date getTanggal() {
+    public String getTanggal() {
         return tanggal;
     }
 
-    public void setTanggal(Date tanggal) {
+    public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
     }
 

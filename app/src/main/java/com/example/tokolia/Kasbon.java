@@ -1,10 +1,12 @@
 package com.example.tokolia;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "kasbon")
 public class Kasbon {
+    @NonNull
     @PrimaryKey(autoGenerate = false)
     String pemilik_kasbon;
 

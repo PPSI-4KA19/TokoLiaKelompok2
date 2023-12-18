@@ -1,17 +1,19 @@
 package com.example.tokolia;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "kategori")
 public class Kategori {
 
+    @NonNull
     @PrimaryKey(autoGenerate = false)
     public String nama_kategori;
     public String deskripsi;
 
-    public Kategori(String nama,String deskripsi){
-        this.nama_kategori = nama;
+    public Kategori(String nama_kategori,String deskripsi){
+        this.nama_kategori = nama_kategori;
         this.deskripsi = deskripsi;
     }
 

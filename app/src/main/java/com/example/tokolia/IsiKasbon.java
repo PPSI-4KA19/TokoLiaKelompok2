@@ -1,14 +1,14 @@
 package com.example.tokolia;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "isi_kasbon")
+@Entity(tableName = "isi_kasbon", primaryKeys = {"pemilik_kasbon","id_transaksi"})
 public class IsiKasbon {
-
-    @PrimaryKey
+    @NonNull
     String pemilik_kasbon;
-    @PrimaryKey
+
     int id_transaksi;
 
     public IsiKasbon(String pemilik_kasbon, int id_transaksi) {
