@@ -17,7 +17,7 @@ public class Kategori {
         this.deskripsi = deskripsi;
     }
 
-    public String getNama_kategori() {
+    public String getNamakategori() {
         return nama_kategori;
     }
 
@@ -25,7 +25,7 @@ public class Kategori {
         return deskripsi;
     }
 
-    public void setNama_kategori(String nama_kategori) {
+    public void setNamaKategori(String nama_kategori) {
         this.nama_kategori = nama_kategori;
     }
 

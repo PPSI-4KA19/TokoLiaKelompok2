@@ -5,27 +5,34 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.window.OnBackInvokedDispatcher;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
+import java.util.List;
+
 public class produkkategori extends AppCompatActivity {
 
+
+    private TokoViewModel tokoViewModel;
     MaterialToolbar toolbar;
-    GridView gridKategori;
+    RecyclerView recyclerKategori;
     Button buttonTambahProduk;
     Button buttonTambahKategori;
-    TextView namaKategori;
-    TextView descKategori;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +68,32 @@ public class produkkategori extends AppCompatActivity {
             }
         });
 
-        gridKategori = findViewById(R.id.gridKategori);
+        //menampilkan kategori ke view
+        recyclerKategori = findViewById(R.id.recyclerKategori);
+        recyclerKategori.setLayoutManager(new GridLayoutManager(this,2));
 
-        //button
+        KategoriAdapter kategoriAdapter = new KategoriAdapter();
+        recyclerKategori.setAdapter(kategoriAdapter);
+
+        //view model gridview dari DB
+        tokoViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(TokoViewModel.class);
+        tokoViewModel.getAllKategori().observe(this, new Observer<List<Kategori>>() {
+            @Override
+            public void onChanged(List<Kategori> kategoris) {
+                //update grid view kategori
+                kategoriAdapter.setKategoris(kategoris);
+
+            }
+        });
+
+
+
+
+        //identify button
         buttonTambahKategori = findViewById(R.id.buttonTambahKategori);
         buttonTambahProduk = findViewById(R.id.buttonTambahProduk);
 
+        //kalo klik button tambah kategori -->
         buttonTambahKategori.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +103,7 @@ public class produkkategori extends AppCompatActivity {
             }
         });
 
+        //kalo klik button tambah produk -->
         buttonTambahProduk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,11 +113,7 @@ public class produkkategori extends AppCompatActivity {
             }
         });
 
-        //untuk ditulis ke db dalam adapter
-        //namaKategori = findViewById(R.id.textNamaKategori);
-        //descKategori = findViewById(R.id.textDescKategori);
-
-
+        /*
         //backpress handling
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
@@ -99,6 +123,7 @@ public class produkkategori extends AppCompatActivity {
                 finish();
             }
         });
+        */
 
         //back toolbar
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

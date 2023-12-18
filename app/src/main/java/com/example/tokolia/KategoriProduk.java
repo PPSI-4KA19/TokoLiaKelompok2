@@ -2,6 +2,7 @@ package com.example.tokolia;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "kategoriproduk",primaryKeys = {"nama_kategori","id_produk"})
