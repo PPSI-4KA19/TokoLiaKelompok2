@@ -4,6 +4,7 @@
     <item
         android:id="@+id/action_search"
         android:title="Search"
+        android:icon="@drawable/search_icon"
         app:actionViewClass="androidx.appcompat.widget.SearchView$SearchAutoComplete"
         app:showAsAction="always"/>
 </menu>

@@ -11,6 +11,11 @@ public class KategoriProduk {
     @PrimaryKey(autoGenerate = false)
     int id_produk;
 
+    public KategoriProduk(String nama_kategori, int id_produk) {
+        this.nama_kategori = nama_kategori;
+        this.id_produk = id_produk;
+    }
+
     public String getNama_kategori() {
         return nama_kategori;
     }
