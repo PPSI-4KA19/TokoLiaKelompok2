@@ -3,6 +3,7 @@ package com.example.tokolia;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,7 @@ import java.util.List;
 public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.KategoriHolder> {
 
     private List<Kategori> kategoris = new ArrayList<>();
-
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -60,6 +61,28 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.Katego
             namaKategori = itemView.findViewById(R.id.textNamaKategori);
             descKategori = itemView.findViewById(R.id.textDescKategori);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int position = getAdapterPosition();
+                    if(listener != null && position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(kategoris.get(position));
+                    }
+
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(Kategori kategori);
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+
+        this.listener = listener;
+
     }
 }

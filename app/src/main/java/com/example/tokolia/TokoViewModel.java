@@ -12,15 +12,18 @@ public class TokoViewModel extends AndroidViewModel {
 
     private TokoRepository repository;
     private LiveData<List<Kategori>> kategoris;
+    //private LiveData<List<Produk>> produks;
 
     public TokoViewModel(@NonNull Application application) {
         super(application);
 
         repository = new TokoRepository(application);
         kategoris = repository.getALlKategori();
+        //produks = repository.getAllProduk();
 
     }
 
+    //----------------------part Kategori---------------------------------------------------------->
     public void insertKategori(Kategori kategori){
         repository.insertKategori(kategori);
     }
@@ -37,4 +40,36 @@ public class TokoViewModel extends AndroidViewModel {
         return kategoris;
     }
 
+    //--------------------akhir bagian Kategori---------------------------------------------------->
+
+
+
+
+    /*
+    //--------------------part Produk-------------------------------------------------------------->
+    public void insertProduk(Produk produk){
+        repository.insertProduk(produk);
+    }
+
+    public void updateProduk(Produk produk){
+        repository.updateProduk(produk);
+    }
+
+    public void deleteProduk(Produk produk){
+        repository.deleteProduk(produk);
+    }
+
+    public LiveData<List<Produk>> getAllProduk(){
+        return produks;
+    }
+
+
+    public LiveData<List<Produk>> getAllProdukOnKategori(String kategori){
+        LiveData<List<Produk>> selectedProduk;
+
+        selectedProduk = repository.getSelectedProduk(kategori);
+        return selectedProduk;
+    }
+    //-------------------------akhir bagian produk------------------------------------------------->
+    */
 }

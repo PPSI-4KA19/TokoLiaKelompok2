@@ -12,11 +12,15 @@ public class Produk {
     String nama_produk;
     int harga_jual;
     int harga_modal;
+    int stok;
+    String kategori;
 
-    public Produk(String nama_produk,int harga_jual,int harga_modal){
+    public Produk(String nama_produk,int harga_jual,int harga_modal, int stok, String kategori){
         this.nama_produk = nama_produk;
         this.harga_jual = harga_jual;
         this.harga_modal = harga_modal;
+        this.stok = stok;
+        this.kategori = kategori;
     }
 
     public int getId_produk() {
@@ -35,8 +39,12 @@ public class Produk {
         return harga_modal;
     }
 
-    public void setId_produk(int id_produk) {
-        this.id_produk = id_produk;
+    public int getStok() {
+        return stok;
+    }
+
+    public String getKategori() {
+        return kategori;
     }
 
     public void setNama_produk(String nama_produk) {
@@ -49,5 +57,13 @@ public class Produk {
 
     public void setHarga_modal(int harga_modal) {
         this.harga_modal = harga_modal;
+    }
+
+    public void setStok(int stok) {
+        this.stok = stok;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
     }
 }

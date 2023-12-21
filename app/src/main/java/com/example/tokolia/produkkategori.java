@@ -1,14 +1,18 @@
 package com.example.tokolia;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -29,15 +33,21 @@ public class produkkategori extends AppCompatActivity {
 
     private TokoViewModel tokoViewModel;
     MaterialToolbar toolbar;
-    RecyclerView recyclerKategori;
-    Button buttonTambahProduk;
     Button buttonTambahKategori;
+
+    //-------------launcher untuk send data-------------------------------------------------------->
+
+    ActivityResultLauncher<Intent> activityResultLauncherAddKategori;
+    ActivityResultLauncher<Intent> activityResultLauncherOpenProduk;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produkkategori);
+
+        //register activity
+        registerActivityAddKategori();
 
         //toolbar setup
         toolbar = findViewById(R.id.kategoriToolbar);
@@ -68,8 +78,10 @@ public class produkkategori extends AppCompatActivity {
             }
         });
 
-        //menampilkan kategori ke view
-        recyclerKategori = findViewById(R.id.recyclerKategori);
+
+
+        //-----------------menampilkan kategori ke view-------------------------------------------->
+        RecyclerView recyclerKategori = findViewById(R.id.recyclerKategori);
         recyclerKategori.setLayoutManager(new GridLayoutManager(this,2));
 
         KategoriAdapter kategoriAdapter = new KategoriAdapter();
@@ -86,34 +98,51 @@ public class produkkategori extends AppCompatActivity {
             }
         });
 
+        //-----------------end menampilkan kategori------------------------------------------------>
+
+        //-----------------open list produk dalam kategori----------------------------------------->
+        kategoriAdapter.setOnItemClickListener(new KategoriAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Kategori kategori) {
+                Intent toProduk = new Intent(produkkategori.this, ListProduk.class);
+                //kirim info kategori
+                toProduk.putExtra("kategori",kategori.getNamakategori());
+                toProduk.putExtra("deskripsi",kategori.getDeskripsi());
+
+                startActivity(toProduk);
+
+                //activityResultLauncherOpenProduk.launch(toProduk);
+
+            }
+        });
 
 
 
+
+
+
+        //-----------------tombol------------------------------------------------------------------>
         //identify button
         buttonTambahKategori = findViewById(R.id.buttonTambahKategori);
-        buttonTambahProduk = findViewById(R.id.buttonTambahProduk);
 
         //kalo klik button tambah kategori -->
         buttonTambahKategori.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent toAddKategori = new Intent(produkkategori.this, TambahKategori.class);
-                startActivity(toAddKategori);
-                finish();
+                activityResultLauncherAddKategori.launch(toAddKategori);
             }
         });
 
-        //kalo klik button tambah produk -->
-        buttonTambahProduk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toAddProduk = new Intent(produkkategori.this, TambahProduk.class);
-                startActivity(toAddProduk);
-                finish();
-            }
-        });
 
-        /*
+
+
+
+
+        //------------------------- back press ---------------------------------------------------->
+
+
+
         //backpress handling
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
@@ -123,7 +152,6 @@ public class produkkategori extends AppCompatActivity {
                 finish();
             }
         });
-        */
 
         //back toolbar
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -136,5 +164,39 @@ public class produkkategori extends AppCompatActivity {
         });
     }
 
+    public void registerActivityAddKategori(){
+
+        activityResultLauncherAddKategori = registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
+                , new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult o) {
+                        int resultCode = o.getResultCode();
+                        Intent data = o.getData();
+
+                        if(resultCode == RESULT_OK && data!=null){
+                            String namaKategori = data.getStringExtra("namaKategori");
+                            String descKategori = data.getStringExtra("deskripsiKategori");
+
+                            Kategori kategori = new Kategori(namaKategori,descKategori);
+                            tokoViewModel.insertKategori(kategori);
+                        }
+                    }
+                });
+
+    }
+
+    public void registerActivityOpenProduk(){
+
+        activityResultLauncherOpenProduk = registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
+                ,new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult o) {
+
+
+                        }
+
+                });
+
+    }
 
 }

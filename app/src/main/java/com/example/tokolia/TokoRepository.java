@@ -12,8 +12,10 @@ import java.util.concurrent.Executors;
 public class TokoRepository {
 
     private KategoriDao kategoriDao;
+    private ProdukDao produkDao;
 
     private LiveData<List<Kategori>> kategoris;
+    private LiveData<List<Produk>> produks;
 
 
     ExecutorService executors = Executors.newSingleThreadExecutor();
@@ -22,10 +24,13 @@ public class TokoRepository {
 
         TokoDatabase database = TokoDatabase.getInstance(application);
         kategoriDao = database.kategoriDao();
+        produkDao = database.produkDao();
         kategoris = kategoriDao.getAllKategori();
+        produks = produkDao.getAllProduk();
 
     }
 
+    //-----------------------------KATEGORI-------------------------------------------------------->
     public void insertKategori(Kategori kategori){
         executors.execute(new Runnable() {
             @Override
@@ -33,7 +38,6 @@ public class TokoRepository {
                 kategoriDao.insert(kategori);
             }
         });
-
     }
 
     public void updateKategori(Kategori kategori){
@@ -58,6 +62,52 @@ public class TokoRepository {
         return kategoris;
     }
 
+    //------------------------AKHIR KATEGORI------------------------------------------------------->
+
+
+
+
+
+    //------------------------PRODUK--------------------------------------------------------------->
+    private LiveData<List<Produk>> selectedProduk;
+
+    public void insertProduk(Produk produk){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                produkDao.insert(produk);
+            }
+        });
+    }
+
+   public void updateProduk(Produk produk){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                produkDao.update(produk);
+            }
+        });
+    }
+
+    public void deleteProduk(Produk produk){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                produkDao.delete(produk);
+            }
+        });
+    }
+
+    public LiveData<List<Produk>> getSelectedProduk(String kategori){
+        selectedProduk = produkDao.getSelectedProdukOnKategori(kategori);
+        return selectedProduk;
+    }
+
+    public LiveData<List<Produk>> getAllProduk(){
+        return produks;
+    }
+
+    //---------------------------AKHIR PRODUK------------------------------------------------------>
 
 
 }

@@ -77,7 +77,7 @@
         <EditText
             android:id="@+id/editTextNamaKategori"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:background="@drawable/background_recycler"
             android:ems="10"
             android:gravity="clip_vertical"
@@ -90,7 +90,7 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Deskripsi (opsional)"

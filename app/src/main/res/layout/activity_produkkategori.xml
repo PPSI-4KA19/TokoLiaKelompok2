@@ -57,7 +57,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerKategori"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="600dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
             android:padding="15dp"
@@ -69,6 +69,7 @@
             android:id="@+id/buttonTambahKategori"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:outlineSpotShadowColor="#372E2E"
@@ -76,17 +77,6 @@
             android:textSize="20sp"
             app:cornerRadius="15dp" />
 
-        <Button
-            android:id="@+id/buttonTambahProduk"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="center"
-            android:text="Tambah Produk"
-            android:textSize="20sp"
-            app:cornerRadius="15dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,10 +12,12 @@ public class Transaksi {
     int id_transaksi;
     String tanggal;
     String jenis_transaksi;
+    String kasbon;
 
-    public Transaksi(String tanggal, String jenis_transaksi) {
+    public Transaksi(String tanggal, String jenis_transaksi, String kasbon) {
         this.tanggal = tanggal;
         this.jenis_transaksi = jenis_transaksi;
+        this.kasbon = kasbon;
     }
 
     public int getId_transaksi() {
@@ -32,6 +34,14 @@ public class Transaksi {
 
     public String getJenis_transaksi() {
         return jenis_transaksi;
+    }
+
+    public String getKasbon() {
+        return kasbon;
+    }
+
+    public void setKasbon(String kasbon) {
+        this.kasbon = kasbon;
     }
 
     public void setJenis_transaksi(String jenis_transaksi) {
