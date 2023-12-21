@@ -31,7 +31,7 @@ import java.util.List;
 public class produkkategori extends AppCompatActivity {
 
 
-    private TokoViewModel tokoViewModel;
+    private KategoriViewModel kategoriViewModel;
     MaterialToolbar toolbar;
     Button buttonTambahKategori;
 
@@ -88,8 +88,8 @@ public class produkkategori extends AppCompatActivity {
         recyclerKategori.setAdapter(kategoriAdapter);
 
         //view model gridview dari DB
-        tokoViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(TokoViewModel.class);
-        tokoViewModel.getAllKategori().observe(this, new Observer<List<Kategori>>() {
+        kategoriViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(KategoriViewModel.class);
+        kategoriViewModel.getAllKategori().observe(this, new Observer<List<Kategori>>() {
             @Override
             public void onChanged(List<Kategori> kategoris) {
                 //update grid view kategori
@@ -178,7 +178,7 @@ public class produkkategori extends AppCompatActivity {
                             String descKategori = data.getStringExtra("deskripsiKategori");
 
                             Kategori kategori = new Kategori(namaKategori,descKategori);
-                            tokoViewModel.insertKategori(kategori);
+                            kategoriViewModel.insertKategori(kategori);
                         }
                     }
                 });

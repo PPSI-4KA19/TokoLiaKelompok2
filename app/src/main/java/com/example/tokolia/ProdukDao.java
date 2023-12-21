@@ -28,4 +28,12 @@ public interface ProdukDao {
     @Transaction
     @Query("SELECT * from produk WHERE kategori = :kategoriSearch")
     LiveData<List<Produk>> getSelectedProdukOnKategori(String kategoriSearch);
+
+    @Transaction
+    @Query("UPDATE produk SET kategori = :kategoriBaru WHERE kategori = :kategoriLama")
+    void updateKategoriOnProduk(String kategoriLama, String kategoriBaru);
+
+    @Transaction
+    @Query("DELETE from produk WHERE kategori = :namaKategori")
+    void deleteAllProdukOnKategori(String namaKategori);
 }

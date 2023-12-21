@@ -3,6 +3,7 @@ package com.example.tokolia;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.lifecycle.LiveData;
 
 import android.content.DialogInterface;
@@ -35,6 +36,17 @@ public class TambahKategori extends AppCompatActivity {
         addNama = findViewById(R.id.editTextNamaKategori);
         addDesc = findViewById(R.id.editTextDeskripsiKategori);
 
+        //-------------------------UI/UX Cosmetic-------------------------------------------------->
+        addNama.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNama.setBackground(AppCompatResources.getDrawable(getApplicationContext(),
+                        R.drawable.background_recycler));
+            }
+        });
+        //----------------------END UI/UX Cosmetic------------------------------------------------->
+
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +73,8 @@ public class TambahKategori extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
+                            addNama.setBackground(AppCompatResources.getDrawable(getApplicationContext(),
+                                    R.drawable.background_alert));
                             addNama.requestFocus();
                         }
                     });

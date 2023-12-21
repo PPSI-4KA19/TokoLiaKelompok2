@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TambahProduk">
+    tools:context=".EditProduk">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout4"
+        android:id="@+id/appBarLayout104"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/produkToolbar"
+            android:id="@+id/editProdukToolbar"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="?attr/colorOnPrimary"
@@ -24,18 +24,18 @@
             android:theme="?attr/actionBarTheme"
             app:buttonGravity="center_vertical"
             app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
-            app:title="Tambah Produk"
+            app:title="Edit Produk"
             app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title2" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <View
-        android:id="@+id/view2"
+        android:id="@+id/view102"
         style="@style/Divider"
         android:background="@color/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout104" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
         android:paddingTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout4">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout104">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textView109"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -65,7 +65,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/textView113"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -78,7 +78,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editTextNamaProduk"
+            android:id="@+id/editEditNamaProduk"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_weight="1"
@@ -94,7 +94,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/textView115"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -106,7 +106,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/textView116"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -118,7 +118,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editNumberHargaJual"
+            android:id="@+id/editEditHargaJual"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:background="@drawable/background_recycler"
@@ -128,7 +128,7 @@
             android:paddingStart="10dp" />
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/textView119"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -138,7 +138,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/editNumberHargaModal"
+            android:id="@+id/editEditHargaModal"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:background="@drawable/background_recycler"
@@ -148,7 +148,7 @@
             android:paddingStart="10dp" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/textView117"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -158,7 +158,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/editNumberStok"
+            android:id="@+id/editEditStok"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:background="@drawable/background_recycler"
@@ -168,7 +168,7 @@
             android:paddingStart="10dp" />
 
         <Button
-            android:id="@+id/buttonSimpanProduk"
+            android:id="@+id/buttonSimpanEditProduk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="40dp"
@@ -178,5 +178,4 @@
             app:cornerRadius="10dp" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

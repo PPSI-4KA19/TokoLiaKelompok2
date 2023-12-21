@@ -47,6 +47,10 @@ public class Produk {
         return kategori;
     }
 
+    public void setId_produk(int id_produk) {
+        this.id_produk = id_produk;
+    }
+
     public void setNama_produk(String nama_produk) {
         this.nama_produk = nama_produk;
     }
