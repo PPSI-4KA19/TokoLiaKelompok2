@@ -114,6 +114,8 @@ public class ListProduk extends AppCompatActivity {
                 intent.putExtra("hargaJual",produk.getHarga_jual());
                 intent.putExtra("hargaModal",produk.getHarga_modal());
                 intent.putExtra("stok",produk.getStok());
+                intent.putExtra("kategori",namaKategori);
+                intent.putExtra("deskripsi",descKategori);
 
                 activityResultLauncherEditProduk.launch(intent);
             }

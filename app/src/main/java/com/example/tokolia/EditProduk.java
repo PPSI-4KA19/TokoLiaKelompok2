@@ -26,6 +26,9 @@ public class EditProduk extends AppCompatActivity {
 
     //container check id produk
     int produkId;
+    //container detail kategori untuk bisa di send back kalau backpress toolbar
+    String kategori;
+    String desc;
 
 
     @Override
@@ -136,21 +139,25 @@ public class EditProduk extends AppCompatActivity {
 
 
         //----------------------back press--------------------------------------------------------->
-        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+        /*getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Intent backToKategori = new Intent(EditProduk.this, ListProduk.class);
-                startActivity(backToKategori);
+                Intent backToListProduk = new Intent(EditProduk.this, ListProduk.class);
+                backToListProduk.putExtra("kategori",kategori);
+                backToListProduk.putExtra("deskripsi",desc);
+                startActivity(backToListProduk);
                 finish();
             }
-        });
+        });*/
 
         toolbar = findViewById(R.id.editProdukToolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backToKategori = new Intent(EditProduk.this, ListProduk.class);
-                startActivity(backToKategori);
+                Intent backToListProduk = new Intent(EditProduk.this, ListProduk.class);
+                backToListProduk.putExtra("kategori",kategori);
+                backToListProduk.putExtra("deskripsi",desc);
+                startActivity(backToListProduk);
                 finish();
             }
         });
@@ -166,6 +173,8 @@ public class EditProduk extends AppCompatActivity {
         int jual = i.getIntExtra("hargaJual",0);
         int modal = i.getIntExtra("hargaModal",0);
         int stokProduk = i.getIntExtra("stok",0);
+        kategori = i.getStringExtra("kategori");
+        desc = i.getStringExtra("deskripsi");
 
         namaProduk.setText(nama);
         hargaJual.setText(""+jual);
