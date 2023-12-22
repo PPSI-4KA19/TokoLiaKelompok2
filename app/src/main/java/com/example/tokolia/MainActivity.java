@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
                     //buka activity hutang
                 } else if(item.getItemId() == R.id.restok){
                     //buka activity restok
+                    Intent bukaRestok = new Intent(MainActivity.this, RestokKategori.class);
+                    startActivity(bukaRestok);
+                    finish();
                 }
                 return true;
             }

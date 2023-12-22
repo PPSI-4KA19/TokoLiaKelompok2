@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/produkView"
+    android:id="@+id/cardRestokView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -20,14 +20,24 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textNamaProduk"
+                android:id="@+id/textRestokNamaProduk"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Nama Produk"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins"
+                android:text="Modal :"
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,7 +55,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textNominalHarga"
+                    android:id="@+id/textRestokNominalHarga"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -79,7 +89,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textStok"
+                    android:id="@+id/textRestokStok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -95,9 +105,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="Edit"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Restok"
                 android:textSize="16sp"
                 app:cornerRadius="8dp" />
         </LinearLayout>
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

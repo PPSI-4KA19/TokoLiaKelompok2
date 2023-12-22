@@ -4,15 +4,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +77,7 @@ public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.ProdukHold
             namaProduk = itemView.findViewById(R.id.textNamaProduk);
             hargaProduk = itemView.findViewById(R.id.textNominalHarga);
             stok = itemView.findViewById(R.id.textStok);
-            buttonEdit = itemView.findViewById(R.id.buttonEditProduk);
+            buttonEdit = itemView.findViewById(R.id.buttonRestokProduk);
             buttonEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -81,7 +81,7 @@ public class ListProduk extends AppCompatActivity {
         });
 
 
-        //--------------------edit + hapus kategori------------------------------------------------>
+        //---------------------------hapus kategori------------------------------------------------>
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -123,7 +123,7 @@ public class ListProduk extends AppCompatActivity {
             }
         });
 
-        //---------------------akhir edit + hapus kategori----------------------------------------->
+        //----------------------------------hapus kategori----------------------------------------->
 
 
 

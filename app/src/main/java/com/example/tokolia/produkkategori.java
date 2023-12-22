@@ -72,6 +72,9 @@ public class produkkategori extends AppCompatActivity {
                     //buka activity hutang
                 } else if(item.getItemId() == R.id.restok){
                     //buka activity restok
+                    Intent bukaRestok = new Intent(produkkategori.this, RestokKategori.class);
+                    startActivity(bukaRestok);
+                    finish();
                 }
                 return true;
             }
@@ -135,7 +138,7 @@ public class produkkategori extends AppCompatActivity {
             }
         });
 
-
+        //------------------akhir open list produk dalam kategori---------------------------------->
 
 
 
@@ -152,15 +155,13 @@ public class produkkategori extends AppCompatActivity {
                 activityResultLauncherAddKategori.launch(toAddKategori);
             }
         });
-
+        //---------------------akhir tombol tambah------------------------------------------------->
 
 
 
 
 
         //------------------------- back press ---------------------------------------------------->
-
-
 
         //backpress handling
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
@@ -181,7 +182,10 @@ public class produkkategori extends AppCompatActivity {
                 finish();
             }
         });
+        //-------------------------akhir backpress------------------------------------------------->
     }
+
+
 
     public void registerActivityAddKategori(){
 
