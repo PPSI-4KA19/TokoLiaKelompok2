@@ -6,12 +6,23 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+
+import com.example.tokolia.Dao.KasbonDao;
+import com.example.tokolia.Dao.TransaksiDao;
+import com.example.tokolia.Dao.TransaksiProdukCrossDao;
+import com.example.tokolia.Entites.Kasbon;
+import com.example.tokolia.Entites.Transaksi;
+import com.example.tokolia.Entites.TransaksiProdukCrossRef;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Kategori.class,Produk.class},version = 1)
+@Database(entities = {Kategori.class,Produk.class,
+                    Transaksi.class, TransaksiProdukCrossRef.class,
+                    Kasbon.class},version = 1)
+@TypeConverters({Converters.class})
 public abstract class TokoDatabase extends RoomDatabase {
 
     private static TokoDatabase instance;
@@ -19,6 +30,9 @@ public abstract class TokoDatabase extends RoomDatabase {
 
     public abstract KategoriDao kategoriDao();
     public abstract ProdukDao produkDao();
+    public abstract TransaksiDao transaksiDao();
+    public abstract KasbonDao kasbonDao();
+    public abstract TransaksiProdukCrossDao transaksiProdukCrossDao();
 
 
     public static synchronized TokoDatabase getInstance(Context context){
@@ -46,6 +60,9 @@ public abstract class TokoDatabase extends RoomDatabase {
 
             KategoriDao kategoriDao = instance.kategoriDao();
             ProdukDao produkDao = instance.produkDao();
+            TransaksiDao transaksiDao = instance.transaksiDao();
+            KasbonDao kasbonDao = instance.kasbonDao();
+            TransaksiProdukCrossDao transaksiProdukCrossDao = instance.transaksiProdukCrossDao();
 
             ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.execute(new Runnable() {

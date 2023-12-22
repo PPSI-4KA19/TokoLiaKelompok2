@@ -1,17 +1,17 @@
-package com.example.tokolia;
+package com.example.tokolia.Entites;
 
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity(tableName = "transaksi_produk", primaryKeys = {"id_transaksi","id_produk"})
-public class TransaksiProduk {
-
+@Entity(tableName = "crossref",primaryKeys = {"id_transaksi","id_produk"} )
+public class TransaksiProdukCrossRef {
     int id_transaksi;
     int id_produk;
     int quantity;
     int total;
 
-    public TransaksiProduk(int id_transaksi, int id_produk, int quantity, int total) {
+
+
+    public TransaksiProdukCrossRef(int id_transaksi, int id_produk, int quantity, int total) {
         this.id_transaksi = id_transaksi;
         this.id_produk = id_produk;
         this.quantity = quantity;
@@ -49,4 +49,5 @@ public class TransaksiProduk {
     public void setTotal(int total) {
         this.total = total;
     }
+
 }

@@ -5,6 +5,14 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.tokolia.Dao.KasbonDao;
+import com.example.tokolia.Dao.TransaksiDao;
+import com.example.tokolia.Dao.TransaksiProdukCrossDao;
+import com.example.tokolia.Entites.Kasbon;
+import com.example.tokolia.Entites.Transaksi;
+import com.example.tokolia.Entites.TransaksiProdukCrossRef;
+
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,9 +21,15 @@ public class TokoRepository {
 
     private KategoriDao kategoriDao;
     private ProdukDao produkDao;
+    private TransaksiDao transaksiDao;
+    private TransaksiProdukCrossDao transaksiProdukCrossDao;
+    private KasbonDao kasbonDao;
 
     private LiveData<List<Kategori>> kategoris;
     private LiveData<List<Produk>> produks;
+    private LiveData<List<Transaksi>> transaksis;
+    private LiveData<List<TransaksiProdukCrossRef>> transaksiProdukCrossRefs;
+    private LiveData<List<Kasbon>> kasbons;
 
 
     ExecutorService executors = Executors.newSingleThreadExecutor();
@@ -29,8 +43,121 @@ public class TokoRepository {
         //----------------------------produk------------------------------------------------------->
         produkDao = database.produkDao();
         produks = produkDao.getAllProduk();
-
+        //----------------------------transaksi---------------------------------------------------->
+        transaksiDao = database.transaksiDao();
+        transaksis = transaksiDao.getAllTransaksi();
+        //----------------------------crossrefs---------------------------------------------------->
+        transaksiProdukCrossDao = database.transaksiProdukCrossDao();
+        transaksiProdukCrossRefs = transaksiProdukCrossDao.getAllTransaksiProdukCrossRef();
+        //-----------------------------kasbon------------------------------------------------------>
+        kasbonDao = database.kasbonDao();
+        kasbons = kasbonDao.getAllKasbon();
     }
+
+
+    //-----------------------------TRANSAKSI------------------------------------------------------->
+
+    public void insertTransaksi(Transaksi transaksi){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                transaksiDao.insert(transaksi);
+            }
+        });
+    }
+
+    public void updateTransaksi(Transaksi transaksi){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                transaksiDao.update(transaksi);
+            }
+        });
+    }
+
+    public void deleteTransaksi(Transaksi transaksi){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                transaksiDao.delete(transaksi);
+            }
+        });
+    }
+
+
+
+    public LiveData<List<Transaksi>> getAllTransaksi(){
+        return transaksis;
+    }
+
+    //extra queries
+    LiveData<List<Transaksi>> selectedTransaksis;
+
+    public LiveData<List<Transaksi>> getAllTransaksiByJenis(String jenis){
+        selectedTransaksis = transaksiDao.getAllTransaksiByJenis(jenis);
+        return selectedTransaksis;
+    }
+
+    public LiveData<List<Transaksi>> getAllTransaksiOnKasbon(String namaPemilik){
+        selectedTransaksis = transaksiDao.getAllTransaksiOnKasbon(namaPemilik);
+        return selectedTransaksis;
+    }
+
+    public LiveData<List<Transaksi>> getAllTransaksiOnTanggal(Date tanggal){
+        selectedTransaksis = transaksiDao.getAllTransaksiOnTanggal(tanggal);
+        return selectedTransaksis;
+    }
+
+    //----------------------------AKHIR TRANSAKSI-------------------------------------------------->
+
+
+
+
+
+    //------------------------TRANSAKSI PRODUK (CROSSREF)------------------------------------------>
+
+    public void insertTransaksiProduk(TransaksiProdukCrossRef transaksiProdukCrossRef){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                transaksiProdukCrossDao.insert(transaksiProdukCrossRef);
+            }
+        });
+    }
+
+    public void updateTransaksiProduk(TransaksiProdukCrossRef transaksiProdukCrossRef){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                transaksiProdukCrossDao.update(transaksiProdukCrossRef);
+            }
+        });
+    }
+
+    public void deleteTransaksiProduk(TransaksiProdukCrossRef transaksiProdukCrossRef){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                transaksiProdukCrossDao.delete(transaksiProdukCrossRef);
+            }
+        });
+    }
+
+    public  LiveData<List<TransaksiProdukCrossRef>> getAllTransaksiProduk(){
+        return transaksiProdukCrossRefs;
+    }
+
+    public  LiveData<List<TransaksiProdukCrossRef>> getAllTransaksiProdukSpesifikTransaksi(int id_transaksi){
+        LiveData<List<TransaksiProdukCrossRef>> selectedCrossrefs
+                = transaksiProdukCrossDao.getAllTransaksiProdukSpesifikTransaksi(id_transaksi);
+        return selectedCrossrefs;
+    }
+
+    //-------------------------AKHIR TRANSAKSI PRODUK (CROSSREFF)---------------------------------->
+
+
+
+
 
     //-----------------------------KATEGORI-------------------------------------------------------->
     public void insertKategori(Kategori kategori){
