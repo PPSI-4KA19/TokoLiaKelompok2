@@ -37,4 +37,8 @@ public class KategoriViewModel extends AndroidViewModel {
         return kategoris;
     }
 
+    public void deleteKategoriSpesifik(String namaKategori){
+        repository.deleteKategoriSpesifik(namaKategori);
+    }
+
 }

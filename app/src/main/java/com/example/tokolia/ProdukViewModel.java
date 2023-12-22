@@ -43,4 +43,8 @@ public class ProdukViewModel extends AndroidViewModel {
         return selectedProduk;
     }
 
+    public void deleteProdukOnKategori(String kategori){
+        repository.deleteProdukOnKategori(kategori);
+    }
+
 }

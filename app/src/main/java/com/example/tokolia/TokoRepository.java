@@ -23,9 +23,11 @@ public class TokoRepository {
     public TokoRepository(Application application){
 
         TokoDatabase database = TokoDatabase.getInstance(application);
+        //----------------------------kategori----------------------------------------------------->
         kategoriDao = database.kategoriDao();
-        produkDao = database.produkDao();
         kategoris = kategoriDao.getAllKategori();
+        //----------------------------produk------------------------------------------------------->
+        produkDao = database.produkDao();
         produks = produkDao.getAllProduk();
 
     }
@@ -60,6 +62,15 @@ public class TokoRepository {
 
     public LiveData<List<Kategori>> getALlKategori(){
         return kategoris;
+    }
+
+    public void deleteKategoriSpesifik(String namaKategori){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                kategoriDao.deleteKategoriSpesifik(namaKategori);
+            }
+        });
     }
 
     //------------------------AKHIR KATEGORI------------------------------------------------------->
@@ -106,6 +117,16 @@ public class TokoRepository {
     public LiveData<List<Produk>> getAllProduk(){
         return produks;
     }
+
+    public void deleteProdukOnKategori(String kategori){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                produkDao.deleteAllProdukOnKategori(kategori);
+            }
+        });
+    }
+
 
     //---------------------------AKHIR PRODUK------------------------------------------------------>
 

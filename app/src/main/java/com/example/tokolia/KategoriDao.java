@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import java.util.List;
@@ -23,4 +24,7 @@ public interface KategoriDao {
     @Query("SELECT * FROM kategori ORDER BY nama_kategori ASC")
     LiveData<List<Kategori>> getAllKategori();
 
+    @Transaction
+    @Query("DELETE FROM kategori WHERE nama_kategori = :namaKategori")
+    void deleteKategoriSpesifik(String namaKategori);
 }

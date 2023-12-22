@@ -26,8 +26,8 @@ public class TambahProduk extends AppCompatActivity {
     EditText hargaModal;
     EditText stok;
     String intentKategori;
+    String intentDesc;
 
-    SpinnerAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,10 @@ public class TambahProduk extends AppCompatActivity {
         hargaJual = findViewById(R.id.editNumberHargaJual);
         hargaModal = findViewById(R.id.editNumberHargaModal);
         stok = findViewById(R.id.editNumberStok);
+
+        Intent i = getIntent();
+        intentKategori = i.getStringExtra("kategori");
+        intentDesc = i.getStringExtra("deskripsi");
 
 
         //-------------------------UI/UX cosmetic-------------------------------------------------->
@@ -128,20 +132,22 @@ public class TambahProduk extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent back = new Intent(TambahProduk.this, produkkategori.class);
+                Intent back = new Intent(TambahProduk.this, ListProduk.class);
+                back.putExtra("kategori",intentKategori);
+                back.putExtra("deskripsi",intentDesc);
                 startActivity(back);
                 finish();
             }
         });
 
-        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+        /*getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 Intent back = new Intent(TambahProduk.this, produkkategori.class);
                 startActivity(back);
                 finish();
             }
-        });
+        });*/
         //-----------------AKHIR BACKPRESS--------------------------------------------------------->
 
 

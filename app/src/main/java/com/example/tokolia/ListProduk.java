@@ -43,6 +43,8 @@ public class ListProduk extends AppCompatActivity {
     ActivityResultLauncher<Intent> activityResultLauncherAddProduk;
     ActivityResultLauncher<Intent> activityResultLauncherEditProduk;
 
+    ActivityResultLauncher<Intent> activityResultLauncherEditKategori;
+
     //containers untuk nyimpan message intent
     String namaKategori;
     String descKategori;
@@ -84,15 +86,38 @@ public class ListProduk extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId() == R.id.edit_kategori){
-                    //TODO open edit activity
-                    //TODO edit kategori + produk with kategori
-                    Toast.makeText(getApplicationContext(),"Kategori berhasil diubah",
-                            Toast.LENGTH_SHORT).show();
-                } else if (item.getItemId() == R.id.delete_kategori){
-                    //TODO delete kategori + produk
-                    Toast.makeText(getApplicationContext(),"Kategori dan isinya berhasil dihapus",
-                            Toast.LENGTH_SHORT).show();
+                if (item.getItemId() == R.id.delete_kategori){
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(ListProduk.this);
+                    alert.setTitle("Menghapus Kategori");
+                    alert.setMessage("Anda yakin mau menghapus kategori ini? /n " +
+                            "menghapus kategori juga akan menghapus semua produk di dalamnya");
+                    alert.setCancelable(false);
+                    alert.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    alert.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //delete all produk
+                            Intent delete = new Intent(ListProduk.this, produkkategori.class);
+                            delete.putExtra("deleteMsg","delete");
+                            delete.putExtra("deleteKategori",namaKategori);
+                            delete.putExtra("deleteKategoriDesc",descKategori);
+                            produkViewModel.deleteProdukOnKategori(namaKategori);
+                            startActivity(delete); //delete if error
+                            dialog.cancel();
+                            finish();
+                            Toast.makeText(getApplicationContext(),"Kategori dan isinya berhasil dihapus",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    AlertDialog dialog = alert.create();
+                    dialog.show();
                 }
                 return true;
             }
@@ -179,6 +204,8 @@ public class ListProduk extends AppCompatActivity {
             public void onClick(View v) {
                 //ke activity tambah produk - isi field
                 Intent toAddProduk = new Intent(ListProduk.this, TambahProduk.class);
+                toAddProduk.putExtra("kategori",namaKategori);
+                toAddProduk.putExtra("deskripsi",descKategori);
                 activityResultLauncherAddProduk.launch(toAddProduk);
 
             }
@@ -264,6 +291,8 @@ public class ListProduk extends AppCompatActivity {
             }
         });
     }
+
+
 
 
     /* TODO FILTER METHOD

@@ -38,7 +38,6 @@ public class produkkategori extends AppCompatActivity {
     //-------------launcher untuk send data-------------------------------------------------------->
 
     ActivityResultLauncher<Intent> activityResultLauncherAddKategori;
-    ActivityResultLauncher<Intent> activityResultLauncherOpenProduk;
 
 
     @Override
@@ -87,6 +86,7 @@ public class produkkategori extends AppCompatActivity {
         KategoriAdapter kategoriAdapter = new KategoriAdapter();
         recyclerKategori.setAdapter(kategoriAdapter);
 
+
         //view model gridview dari DB
         kategoriViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(KategoriViewModel.class);
         kategoriViewModel.getAllKategori().observe(this, new Observer<List<Kategori>>() {
@@ -97,6 +97,25 @@ public class produkkategori extends AppCompatActivity {
 
             }
         });
+
+
+
+
+
+        //--------------------------DELETE KATEGORI------------------------------------------------>
+        //antisipasi ada request delete
+        Intent checkMsg = getIntent();
+        String deleteMsg = checkMsg.getStringExtra("deleteMsg");
+        String deleteKategori = checkMsg.getStringExtra("deleteKategori");
+        String deleteKategoriDesc = checkMsg.getStringExtra("deleteKategoriDesc");
+
+        Kategori hapus = new Kategori(deleteKategori,deleteKategoriDesc);
+        kategoriViewModel.deleteKategori(hapus);
+        //---------------------------AKHIR DELETE KATEGORI----------------------------------------->
+
+
+
+
 
         //-----------------end menampilkan kategori------------------------------------------------>
 
@@ -181,20 +200,6 @@ public class produkkategori extends AppCompatActivity {
                             kategoriViewModel.insertKategori(kategori);
                         }
                     }
-                });
-
-    }
-
-    public void registerActivityOpenProduk(){
-
-        activityResultLauncherOpenProduk = registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
-                ,new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult o) {
-
-
-                        }
-
                 });
 
     }
