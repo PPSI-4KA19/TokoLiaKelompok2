@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -86,6 +88,7 @@ public class RestokListProduk extends AppCompatActivity {
                 builder.setView(mView);
 
                 AlertDialog alertDialog = builder.create();
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 int idProduk = produk.getId_produk();
                 String namaProduk = produk.getNama_produk();
@@ -93,30 +96,48 @@ public class RestokListProduk extends AppCompatActivity {
                 int hargaModal = produk.getHarga_modal();
                 int jumStok = produk.getStok();
 
-                int newModal = 0;
-                int newStok = 0;
-
                 buttonRestok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //kalau kolom stok kosong, tidak lanjut
                         if(inputStok.getText().toString().equals("")||inputStok.getText() == null){
 
                             //start statement
                             inputStok.setBackground(AppCompatResources.getDrawable(getApplicationContext()
                                     ,R.drawable.background_alert));
                             inputStok.requestFocus();
-
-                        } else if(inputModal.getText().toString().equals("")||
+                        }
+                        else //kalau modal kosong, dianggap tidak ada perubahan harga pertama beli
+                            if(inputModal.getText().toString().equals("")||
                             inputModal.getText() == null ||
                                 Integer.parseInt(inputModal.getText().toString()) == 0){
 
                             //start statement
+                            int modalBaru = hargaModal;
+                            int stokBaru = jumStok + Integer.parseInt(inputStok.getText().toString());
+                            Produk restokProduk = new Produk(namaProduk,hargaJual,modalBaru,stokBaru,namaKategori);
+                            restokProduk.setId_produk(idProduk);
+                            produkViewModel.updateProduk(restokProduk);
+                            Toast.makeText(getApplicationContext(),"Berhasil menambahkan " +
+                                    inputStok.getText().toString() + " ke "
+                                    + produk.getNama_produk() + "." ,Toast.LENGTH_SHORT).show();
+                            alertDialog.dismiss();
+                        }
+                            else {
 
-                            Toast.makeText(getApplicationContext(),"modal kosong",Toast.LENGTH_SHORT).show();
-                        } else {
+                            //start statement
+                            int inputModalBaru = Integer.parseInt(inputModal.getText().toString());
+                            int inputStokBaru = Integer.parseInt(inputStok.getText().toString());
+                            int stokBaru = jumStok + inputStokBaru;
+                            int modalBaru = ((jumStok*hargaModal)+(inputStokBaru*inputModalBaru))/stokBaru;
 
-                            Toast.makeText(getApplicationContext(),"Data restok ditambahkan",Toast.LENGTH_SHORT).show();
-
+                            Produk restokProduk = new Produk(namaProduk,hargaJual,modalBaru,stokBaru,namaKategori);
+                            restokProduk.setId_produk(idProduk);
+                            produkViewModel.updateProduk(restokProduk);
+                            Toast.makeText(getApplicationContext(),"Berhasil menambahkan " +
+                                    inputStok.getText().toString() + " ke "
+                                    + produk.getNama_produk() + ".",Toast.LENGTH_SHORT).show();
+                            alertDialog.dismiss();
                         }
                     }
                 });
