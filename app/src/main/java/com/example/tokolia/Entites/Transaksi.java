@@ -1,5 +1,6 @@
 package com.example.tokolia.Entites;
 
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -11,10 +12,12 @@ public class Transaksi {
     @PrimaryKey(autoGenerate = true)
     int id_transaksi;
     Date tanggal;
+
     String jenis_transaksi;
+    @Nullable
     String kasbon;
 
-    public Transaksi(Date tanggal, String jenis_transaksi, String kasbon) {
+    public Transaksi(Date tanggal, String jenis_transaksi, @Nullable String kasbon) {
         this.tanggal = tanggal;
         this.jenis_transaksi = jenis_transaksi;
         this.kasbon = kasbon;

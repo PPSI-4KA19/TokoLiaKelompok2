@@ -6,14 +6,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.tokolia.Entites.Transaksi;
 import com.example.tokolia.MainActivity;
 import com.example.tokolia.R;
 import com.google.android.material.appbar.MaterialToolbar;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class TransaksiActivity extends AppCompatActivity {
 
@@ -52,6 +59,25 @@ public class TransaksiActivity extends AppCompatActivity {
         buttonProsesTransaksi = findViewById(R.id.buttonProsesTransaksi);
 
 
+        initiateTransaksi();
+
+
+        //----------------------------button tambah produk----------------------------------------->
+
+        buttonAddProduk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toAdd = new Intent(TransaksiActivity.this, TransaksiBukaKategoriActivity.class);
+                startActivity(toAdd);
+            }
+        });
+
+        //------------------------akhir button tambah produk--------------------------------------->
+
+
+
+
+
         //-----------------------button cancel + backpress----------------------------------------->
 
         //button cancel
@@ -82,4 +108,17 @@ public class TransaksiActivity extends AppCompatActivity {
     }
     //-----------------------------akhir method untuk kembali-------------------------------------->
 
+
+
+
+    //--------------------------------initiate transaksi------------------------------------------->
+
+    public void initiateTransaksi(){
+        Date today = Calendar.getInstance().getTime();
+        Transaksi transaksiBaru = new Transaksi(today,"pembelian",null);
+
+
+    }
+
+    //-----------------------------akhir initiate transaksi---------------------------------------->
 }

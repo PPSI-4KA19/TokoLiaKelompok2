@@ -1,5 +1,6 @@
 package com.example.tokolia;
 
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -11,7 +12,9 @@ public class Produk {
 
     String nama_produk;
     int harga_jual;
+
     int harga_modal;
+
     int stok;
     String kategori;
 

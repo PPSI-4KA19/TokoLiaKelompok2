@@ -60,6 +60,12 @@ public class ListProduk extends AppCompatActivity {
         registerActivityAddProduk();
         registerActivityEditProduk();
 
+
+
+
+
+        //---------------------------setup tampilan recycler--------------------------------------->
+
         recyclerProduk = findViewById(R.id.recyclerProduk);
         recyclerProduk.setLayoutManager(new LinearLayoutManager(this));
 
@@ -79,6 +85,12 @@ public class ListProduk extends AppCompatActivity {
                 adapter.setProduks(produks);
             }
         });
+
+        //-------------------------akhir setup tampilan recycler----------------------------------->
+
+
+
+
 
 
         //---------------------------hapus kategori------------------------------------------------>

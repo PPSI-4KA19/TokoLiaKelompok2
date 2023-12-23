@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.TransaksiBukaKategoriActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout502"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarTransaksiKategori"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="?attr/colorOnPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:buttonGravity="center_vertical"
+            app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
+            app:title="Kategori Produk"
+            app:titleMarginStart="30dp"
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title2"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <View
+        android:id="@+id/view"
+        style="@style/Divider"
+        android:background="@color/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout502" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout502"
+        app:layout_constraintVertical_bias="0.063">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerTransaksiKategori"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:padding="15dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="15dp"
+            tools:listitem="@layout/layout_kategori" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
