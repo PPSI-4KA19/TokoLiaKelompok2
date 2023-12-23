@@ -10,16 +10,20 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.tokolia.Dao.KasbonDao;
+import com.example.tokolia.Dao.KategoriDao;
+import com.example.tokolia.Dao.ProdukDao;
 import com.example.tokolia.Dao.TransaksiDao;
 import com.example.tokolia.Dao.TransaksiProdukCrossDao;
 import com.example.tokolia.Entites.Kasbon;
+import com.example.tokolia.Entites.Kategori;
+import com.example.tokolia.Entites.Produk;
 import com.example.tokolia.Entites.Transaksi;
 import com.example.tokolia.Entites.TransaksiProdukCrossRef;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Kategori.class,Produk.class,
+@Database(entities = {Kategori.class, Produk.class,
                     Transaksi.class, TransaksiProdukCrossRef.class,
                     Kasbon.class},version = 1)
 @TypeConverters({Converters.class})

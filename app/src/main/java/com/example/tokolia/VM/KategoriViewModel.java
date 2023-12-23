@@ -1,10 +1,13 @@
-package com.example.tokolia;
+package com.example.tokolia.VM;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.tokolia.Entites.Kategori;
+import com.example.tokolia.TokoRepository;
 
 import java.util.List;
 

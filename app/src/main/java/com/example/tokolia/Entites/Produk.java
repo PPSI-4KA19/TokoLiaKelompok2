@@ -1,4 +1,4 @@
-package com.example.tokolia;
+package com.example.tokolia.Entites;
 
 import androidx.annotation.Nullable;
 import androidx.room.Entity;
@@ -18,7 +18,7 @@ public class Produk {
     int stok;
     String kategori;
 
-    public Produk(String nama_produk,int harga_jual,int harga_modal, int stok, String kategori){
+    public Produk(String nama_produk,int harga_jual, int harga_modal, int stok, String kategori){
         this.nama_produk = nama_produk;
         this.harga_jual = harga_jual;
         this.harga_modal = harga_modal;

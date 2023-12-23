@@ -18,14 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.tokolia.Adapter.ProdukAdapter;
+import com.example.tokolia.Entites.Produk;
+import com.example.tokolia.VM.ProdukViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
@@ -192,7 +192,7 @@ public class ListProduk extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         produkViewModel.deleteProduk(adapter.getProduk(viewHolder.getAdapterPosition()));
                         Toast.makeText(getApplicationContext()
-                                ,"Produk " + adapter.getProduk(viewHolder.getAdapterPosition()).nama_produk + " berhasil dihapus."
+                                ,"Produk " + adapter.getProduk(viewHolder.getAdapterPosition()).getNama_produk() + " berhasil dihapus."
                                 , Toast.LENGTH_SHORT).show();
                     }
                 });

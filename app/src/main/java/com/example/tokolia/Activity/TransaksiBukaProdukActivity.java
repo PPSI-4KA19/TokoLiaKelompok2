@@ -13,8 +13,8 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.tokolia.Adapter.SelectProdukAdapter;
-import com.example.tokolia.Produk;
-import com.example.tokolia.ProdukViewModel;
+import com.example.tokolia.Entites.Produk;
+import com.example.tokolia.VM.ProdukViewModel;
 import com.example.tokolia.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -80,6 +80,12 @@ public class TransaksiBukaProdukActivity extends AppCompatActivity {
             public void onItemClick(Produk produk) {
 
                 Intent select = new Intent(TransaksiBukaProdukActivity.this, TransaksiActivity.class);
+                select.putExtra("id_produk",produk.getId_produk());
+                select.putExtra("harga_produk",produk.getHarga_jual());
+                select.putExtra("stok",produk.getStok());
+                startActivity(select);
+                finish();
+
                 Toast.makeText(getApplicationContext(),
                         "Produk berhasil ditambahkan",Toast.LENGTH_SHORT).show();
 

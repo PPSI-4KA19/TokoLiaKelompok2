@@ -3,6 +3,9 @@ package com.example.tokolia;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
+import com.example.tokolia.Entites.Kategori;
+import com.example.tokolia.Entites.Produk;
+
 import java.util.List;
 
 public class KategoriProduk {

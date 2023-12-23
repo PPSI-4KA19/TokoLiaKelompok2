@@ -15,6 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.tokolia.Adapter.KategoriAdapter;
+import com.example.tokolia.Entites.Kategori;
+import com.example.tokolia.VM.KategoriViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;

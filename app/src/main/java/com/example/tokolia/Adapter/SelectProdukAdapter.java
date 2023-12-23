@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tokolia.Produk;
+import com.example.tokolia.Entites.Produk;
 import com.example.tokolia.R;
 
 import java.util.List;

@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if(item.getItemId() == R.id.hutang){
                     //buka activity hutang
+
                 } else if(item.getItemId() == R.id.restok){
                     //buka activity restok
                     Intent bukaRestok = new Intent(MainActivity.this, RestokKategori.class);

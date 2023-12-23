@@ -1,4 +1,4 @@
-package com.example.tokolia;
+package com.example.tokolia.Entites;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;

@@ -5,8 +5,6 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
@@ -20,11 +18,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.window.OnBackInvokedDispatcher;
 
 import com.example.tokolia.Activity.TransaksiActivity;
+import com.example.tokolia.Adapter.KategoriAdapter;
+import com.example.tokolia.Entites.Kategori;
+import com.example.tokolia.VM.KategoriViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;

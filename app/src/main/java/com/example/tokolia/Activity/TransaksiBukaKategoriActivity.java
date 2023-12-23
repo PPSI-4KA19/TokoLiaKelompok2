@@ -10,9 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.tokolia.Kategori;
-import com.example.tokolia.KategoriAdapter;
-import com.example.tokolia.KategoriViewModel;
+import com.example.tokolia.Entites.Kategori;
+import com.example.tokolia.Adapter.KategoriAdapter;
+import com.example.tokolia.VM.KategoriViewModel;
 import com.example.tokolia.R;
 import com.google.android.material.appbar.MaterialToolbar;
 

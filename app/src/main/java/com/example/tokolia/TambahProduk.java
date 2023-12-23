@@ -42,6 +42,9 @@ public class TambahProduk extends AppCompatActivity {
         hargaModal = findViewById(R.id.editNumberHargaModal);
         stok = findViewById(R.id.editNumberStok);
 
+        hargaModal.setText("" + 0);
+        stok.setText("" + 0);
+
         Intent i = getIntent();
         intentKategori = i.getStringExtra("kategori");
         intentDesc = i.getStringExtra("deskripsi");
