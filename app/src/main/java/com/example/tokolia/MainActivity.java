@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tokolia.Activity.TransaksiActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else if(item.getItemId() == R.id.transaksi){
                     //buka activity transaksi
+                    Intent bukaTransaksi = new Intent(MainActivity.this, TransaksiActivity.class);
+                    startActivity(bukaTransaksi);
+                    finish();
+
                 } else if(item.getItemId() == R.id.produk){
                     //buka activity produk kategori
                     Intent bukaProduk = new Intent(MainActivity.this, produkkategori.class);
@@ -51,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent bukaRestok = new Intent(MainActivity.this, RestokKategori.class);
                     startActivity(bukaRestok);
                     finish();
+
                 }
                 return true;
             }

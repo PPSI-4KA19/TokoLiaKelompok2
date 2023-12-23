@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.window.OnBackInvokedDispatcher;
 
+import com.example.tokolia.Activity.TransaksiActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
@@ -57,19 +58,25 @@ public class produkkategori extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
 
                 if(item.getItemId() == R.id.dasbor){
+                    //buka dashboard
                     Intent bukaProduk = new Intent(produkkategori.this, MainActivity.class);
-                        startActivity(bukaProduk);
-                        finish();
+                    startActivity(bukaProduk);
+                    finish();
+
                 } else if(item.getItemId() == R.id.transaksi){
                     //buka activity transaksi
+                    Intent bukaTransaksi = new Intent(produkkategori.this, TransaksiActivity.class);
+                    startActivity(bukaTransaksi);
+                    finish();
+
                 } else if(item.getItemId() == R.id.produk){
                     //buka activity produk kategori
-
                     Toast.makeText(getApplicationContext(),"Anda berada di halaman Produk",
                             Toast.LENGTH_SHORT).show();
 
                 } else if(item.getItemId() == R.id.hutang){
                     //buka activity hutang
+
                 } else if(item.getItemId() == R.id.restok){
                     //buka activity restok
                     Intent bukaRestok = new Intent(produkkategori.this, RestokKategori.class);

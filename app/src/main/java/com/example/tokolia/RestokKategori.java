@@ -49,19 +49,27 @@ public class RestokKategori extends AppCompatActivity {
                     Intent toMain = new Intent(RestokKategori.this, MainActivity.class);
                     startActivity(toMain);
                     finish();
+
                 } else if(item.getItemId() == R.id.transaksi){
                     //buka activity transaksi
+                    Intent bukaTransaksi = new Intent(RestokKategori.this, MainActivity.class);
+                    startActivity(bukaTransaksi);
+                    finish();
+
                 } else if(item.getItemId() == R.id.produk){
                     //buka activity produk kategori
                     Intent bukaProduk = new Intent(RestokKategori.this, produkkategori.class);
                     startActivity(bukaProduk);
                     finish();
+
                 } else if(item.getItemId() == R.id.hutang){
                     //buka activity hutang
+
                 } else if(item.getItemId() == R.id.restok){
                     //buka activity restok
                     Toast.makeText(getApplicationContext(),"Anda berada di halaman Restok",
                             Toast.LENGTH_SHORT).show();
+
                 }
                 return true;
             }
