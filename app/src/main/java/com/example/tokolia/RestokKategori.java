@@ -47,23 +47,19 @@ public class RestokKategori extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
+                Intent intent = new Intent();
                 if(item.getItemId() == R.id.dasbor){
                     //buka main activity
-                    Intent toMain = new Intent(RestokKategori.this, MainActivity.class);
-                    startActivity(toMain);
-                    finish();
+                    intent = new Intent(RestokKategori.this, MainActivity.class);
 
                 } else if(item.getItemId() == R.id.transaksi){
                     //buka activity transaksi
-                    Intent bukaTransaksi = new Intent(RestokKategori.this, MainActivity.class);
-                    startActivity(bukaTransaksi);
-                    finish();
+                    intent = new Intent(RestokKategori.this, MainActivity.class);
 
                 } else if(item.getItemId() == R.id.produk){
                     //buka activity produk kategori
-                    Intent bukaProduk = new Intent(RestokKategori.this, produkkategori.class);
-                    startActivity(bukaProduk);
-                    finish();
+                    intent = new Intent(RestokKategori.this, produkkategori.class);
+
 
                 } else if(item.getItemId() == R.id.hutang){
                     //buka activity hutang
@@ -73,6 +69,11 @@ public class RestokKategori extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Anda berada di halaman Restok",
                             Toast.LENGTH_SHORT).show();
 
+                }
+
+                if(intent != null){
+                    startActivity(intent);
+                    finish();
                 }
                 return true;
             }

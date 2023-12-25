@@ -31,6 +31,7 @@ public interface ProdukDao {
     @Query("SELECT * from produk WHERE kategori = :kategoriSearch")
     LiveData<List<Produk>> getSelectedProdukOnKategori(String kategoriSearch);
 
+    //mungkin dibutuhkan kalo ada fitur edit nama kategori
     @Transaction
     @Query("UPDATE produk SET kategori = :kategoriBaru WHERE kategori = :kategoriLama")
     void updateKategoriOnProduk(String kategoriLama, String kategoriBaru);
@@ -38,4 +39,13 @@ public interface ProdukDao {
     @Transaction
     @Query("DELETE from produk WHERE kategori = :namaKategori")
     void deleteAllProdukOnKategori(String namaKategori);
+
+    @Transaction
+    @Query("SELECT * FROM produk WHERE id_produk = :idProduk")
+    Produk getProdukById(int idProduk);
+
+    @Transaction
+    @Query("SELECT * FROM produk WHERE id_produk = :id_produk")
+    LiveData<List<Produk>> getListProdukById(int id_produk);
+
 }

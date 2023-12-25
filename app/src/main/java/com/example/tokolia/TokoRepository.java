@@ -4,11 +4,13 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.tokolia.Dao.CartDao;
 import com.example.tokolia.Dao.KasbonDao;
 import com.example.tokolia.Dao.KategoriDao;
 import com.example.tokolia.Dao.ProdukDao;
 import com.example.tokolia.Dao.TransaksiDao;
 import com.example.tokolia.Dao.TransaksiProdukCrossDao;
+import com.example.tokolia.Entites.Cart;
 import com.example.tokolia.Entites.Kasbon;
 import com.example.tokolia.Entites.Kategori;
 import com.example.tokolia.Entites.Produk;
@@ -27,12 +29,14 @@ public class TokoRepository {
     private TransaksiDao transaksiDao;
     private TransaksiProdukCrossDao transaksiProdukCrossDao;
     private KasbonDao kasbonDao;
+    private CartDao cartDao;
 
     private LiveData<List<Kategori>> kategoris;
     private LiveData<List<Produk>> produks;
     private LiveData<List<Transaksi>> transaksis;
     private LiveData<List<TransaksiProdukCrossRef>> transaksiProdukCrossRefs;
     private LiveData<List<Kasbon>> kasbons;
+    private LiveData<List<Cart>> carts;
 
 
     ExecutorService executors = Executors.newSingleThreadExecutor();
@@ -55,6 +59,9 @@ public class TokoRepository {
         //-----------------------------kasbon------------------------------------------------------>
         kasbonDao = database.kasbonDao();
         kasbons = kasbonDao.getAllKasbon();
+        //------------------------------cart------------------------------------------------------->
+        cartDao = database.cartDao();
+        carts = cartDao.getALlCartInfo();
     }
 
 
@@ -257,8 +264,57 @@ public class TokoRepository {
         });
     }
 
+    public LiveData<List<Produk>> getListProdukById(int idProduk){
+        return produkDao.getListProdukById(idProduk);
+    }
 
     //---------------------------AKHIR PRODUK------------------------------------------------------>
 
 
+
+
+
+    //-----------------------------CARTS----------------------------------------------------------->
+
+    public void insertCart(Cart cart){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                cartDao.insertCart(cart);
+            }
+        });
+    }
+
+    public void updateCart(Cart cart){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                cartDao.updateCart(cart);
+            }
+        });
+    }
+
+    public void deleteCart(Cart cart){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                cartDao.deleteCart(cart);
+            }
+        });
+    }
+
+    public LiveData<List<Cart>> getAllCartInfo(){
+        return carts;
+    }
+
+    public void clearCart(){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                cartDao.cleanCart();
+            }
+        });
+    }
+
+    //---------------------------AKHIR CARTS------------------------------------------------------->
 }

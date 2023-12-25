@@ -34,30 +34,31 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
+                Intent intent = new Intent();
+
                 if(item.getItemId() == R.id.dasbor){
                     Toast.makeText(getApplicationContext(),"Anda berada di halaman Dasbor",
                             Toast.LENGTH_SHORT).show();
                 } else if(item.getItemId() == R.id.transaksi){
                     //buka activity transaksi
-                    Intent bukaTransaksi = new Intent(MainActivity.this, TransaksiActivity.class);
-                    startActivity(bukaTransaksi);
-                    finish();
+                    intent = new Intent(MainActivity.this, TransaksiActivity.class);
 
                 } else if(item.getItemId() == R.id.produk){
                     //buka activity produk kategori
-                    Intent bukaProduk = new Intent(MainActivity.this, produkkategori.class);
-                    startActivity(bukaProduk);
-                    finish();
+                    intent = new Intent(MainActivity.this, produkkategori.class);
 
                 } else if(item.getItemId() == R.id.hutang){
                     //buka activity hutang
 
                 } else if(item.getItemId() == R.id.restok){
                     //buka activity restok
-                    Intent bukaRestok = new Intent(MainActivity.this, RestokKategori.class);
-                    startActivity(bukaRestok);
-                    finish();
+                    intent = new Intent(MainActivity.this, RestokKategori.class);
 
+                }
+
+                if(intent != null){
+                    startActivity(intent);
+                    finish();
                 }
                 return true;
             }

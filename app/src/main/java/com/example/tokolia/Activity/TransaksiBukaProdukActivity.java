@@ -81,14 +81,13 @@ public class TransaksiBukaProdukActivity extends AppCompatActivity {
 
                 Intent select = new Intent(TransaksiBukaProdukActivity.this, TransaksiActivity.class);
                 select.putExtra("id_produk",produk.getId_produk());
+                select.putExtra("nama_produk",produk.getNama_produk());
                 select.putExtra("harga_produk",produk.getHarga_jual());
-                select.putExtra("stok",produk.getStok());
+                select.putExtra("modal_produk",produk.getHarga_modal());
+                select.putExtra("stok_produk",produk.getStok());
+                select.putExtra("kategori_produk",produk.getKategori());
                 startActivity(select);
                 finish();
-
-                Toast.makeText(getApplicationContext(),
-                        "Produk berhasil ditambahkan",Toast.LENGTH_SHORT).show();
-
             }
         });
         //----------------------------akhir click on produk---------------------------------------->

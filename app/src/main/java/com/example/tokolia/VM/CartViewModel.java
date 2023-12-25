@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.tokolia.Entites.Produk;
+import com.example.tokolia.Entites.Cart;
 import com.example.tokolia.Entites.Transaksi;
 import com.example.tokolia.Entites.TransaksiProdukCrossRef;
 import com.example.tokolia.TokoRepository;
@@ -14,26 +14,50 @@ import com.example.tokolia.TokoRepository;
 import java.util.Date;
 import java.util.List;
 
-public class TransaksiViewModel extends AndroidViewModel {
+public class CartViewModel extends AndroidViewModel {
 
+    LiveData<List<Cart>> carts;
     TokoRepository repository;
 
-    private LiveData<List<TransaksiProdukCrossRef>> transaksiProduks;
+    private LiveData<List<TransaksiProdukCrossRef>> crossref;
     private LiveData<List<Transaksi>> transaksis;
 
-    //coba isi produk
-    private LiveData<List<Produk>> produks;
 
-    //public List<Produk> listProduk = (List<Produk>) produks;
-
-    public TransaksiViewModel(@NonNull Application application) {
+    public CartViewModel(@NonNull Application application) {
         super(application);
 
         repository = new TokoRepository(application);
+        carts = repository.getAllCartInfo();
         transaksis = repository.getAllTransaksi();
-        transaksiProduks = repository.getAllTransaksiProduk();
-        produks = repository.getAllProduk();
+        crossref = repository.getAllTransaksiProduk();
+
     }
+
+
+    //--------------------------part carts view---------------------------------------------------->
+
+    public void insertCart(Cart cart){
+        repository.insertCart(cart);
+    }
+
+    public void updateCart(Cart cart){
+        repository.updateCart(cart);
+    }
+
+    public void deleteCart(Cart cart){
+        repository.deleteCart(cart);
+    }
+
+    public void clearCart(){
+        repository.clearCart();
+    }
+
+    public LiveData<List<Cart>> getAllCartInfo(){
+        return carts;
+    }
+
+    //--------------------------akhir part carts view---------------------------------------------->
+
 
 
     //-------------------------part transaksi entity----------------------------------------------->
@@ -89,7 +113,7 @@ public class TransaksiViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<TransaksiProdukCrossRef>> getAllCrossRefs(){
-        return transaksiProduks;
+        return crossref;
     }
 
     public LiveData<List<TransaksiProdukCrossRef>> getAllCrossRefsById(int id){
@@ -99,42 +123,5 @@ public class TransaksiViewModel extends AndroidViewModel {
     }
 
     //-----------------------akhir part transaksiproduk-------------------------------------------->
-
-
-
-
-
-    //----------------------------part produk------------------------------------------------------>
-
-    private LiveData<List<Produk>> selectedProduks;
-    public void updateProduk(Produk produk){
-        repository.updateProduk(produk);
-    }
-
-    /*
-    public List<Produk> getProdukById(List<String> listIdProduk){
-        for (String item : listIdProduk) {
-            listProduk.add(repository.getProdukById(Integer.parseInt(item)));
-        }
-        return listProduk;
-    }
-     */
-    /*
-    public LiveData<List<Produk>> getProdukById(List<Produk> produks){
-        for (Produk item : produks) {
-            repository.getProdukById(item.getId_produk());
-
-        }
-    }
-     */
-
-    public LiveData<List<Produk>> getListProdukById(int idProduk){
-        selectedProduks = repository.getListProdukById(idProduk);
-        return selectedProduks;
-    }
-
-    public LiveData<List<Produk>> getAllProduk(){
-        return produks;
-    }
 
 }

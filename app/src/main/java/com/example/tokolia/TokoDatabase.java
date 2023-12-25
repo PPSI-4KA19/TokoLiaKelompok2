@@ -9,11 +9,13 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.tokolia.Dao.CartDao;
 import com.example.tokolia.Dao.KasbonDao;
 import com.example.tokolia.Dao.KategoriDao;
 import com.example.tokolia.Dao.ProdukDao;
 import com.example.tokolia.Dao.TransaksiDao;
 import com.example.tokolia.Dao.TransaksiProdukCrossDao;
+import com.example.tokolia.Entites.Cart;
 import com.example.tokolia.Entites.Kasbon;
 import com.example.tokolia.Entites.Kategori;
 import com.example.tokolia.Entites.Produk;
@@ -25,7 +27,7 @@ import java.util.concurrent.Executors;
 
 @Database(entities = {Kategori.class, Produk.class,
                     Transaksi.class, TransaksiProdukCrossRef.class,
-                    Kasbon.class},version = 1)
+                    Kasbon.class, Cart.class},version = 1)
 @TypeConverters({Converters.class})
 public abstract class TokoDatabase extends RoomDatabase {
 
@@ -37,7 +39,7 @@ public abstract class TokoDatabase extends RoomDatabase {
     public abstract TransaksiDao transaksiDao();
     public abstract KasbonDao kasbonDao();
     public abstract TransaksiProdukCrossDao transaksiProdukCrossDao();
-
+    public abstract CartDao cartDao();
 
     public static synchronized TokoDatabase getInstance(Context context){
 
@@ -67,12 +69,13 @@ public abstract class TokoDatabase extends RoomDatabase {
             TransaksiDao transaksiDao = instance.transaksiDao();
             KasbonDao kasbonDao = instance.kasbonDao();
             TransaksiProdukCrossDao transaksiProdukCrossDao = instance.transaksiProdukCrossDao();
+            CartDao cartDao = instance.cartDao();
 
             ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
-                    //untuk dihapus setelah tes
+                    /*//untuk dihapus setelah tes
                     //Kategori
                     kategoriDao.insert(new Kategori("Mie","Indomie"));
                     kategoriDao.insert(new Kategori("Plastik","Ya plastik"));
@@ -82,7 +85,7 @@ public abstract class TokoDatabase extends RoomDatabase {
                     produkDao.insert(new Produk("Indomie Goreng",5000,3500,10,"Mie"));
                     produkDao.insert(new Produk("Mie Sedap Goreng",5000,3800,11,"Mie"));
                     produkDao.insert(new Produk("Mie Gaga Goreng",1500,200,13,"Mie"));
-
+                    */
 
                 }
             });
