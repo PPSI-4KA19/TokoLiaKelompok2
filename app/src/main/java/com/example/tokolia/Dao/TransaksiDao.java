@@ -25,7 +25,7 @@ public interface TransaksiDao {
     @Delete
     void delete(Transaksi transaksi);
 
-    @Query("SELECT * FROM transaksi ORDER BY id_transaksi ASC")
+    @Query("SELECT * FROM transaksi ORDER BY tanggal DESC")
     LiveData<List<Transaksi>> getAllTransaksi();
 
     @Transaction
@@ -38,5 +38,5 @@ public interface TransaksiDao {
 
     @Transaction
     @Query("SELECT * FROM transaksi WHERE tanggal = :tanggal")
-    LiveData<List<Transaksi>> getAllTransaksiOnTanggal(Date tanggal);
+    LiveData<List<Transaksi>> getAllTransaksiOnTanggal(String tanggal);
 }

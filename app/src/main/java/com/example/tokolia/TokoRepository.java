@@ -113,7 +113,7 @@ public class TokoRepository {
         return selectedTransaksis;
     }
 
-    public LiveData<List<Transaksi>> getAllTransaksiOnTanggal(Date tanggal){
+    public LiveData<List<Transaksi>> getAllTransaksiOnTanggal(String tanggal){
         selectedTransaksis = transaksiDao.getAllTransaksiOnTanggal(tanggal);
         return selectedTransaksis;
     }
@@ -157,7 +157,7 @@ public class TokoRepository {
         return transaksiProdukCrossRefs;
     }
 
-    public  LiveData<List<TransaksiProdukCrossRef>> getAllTransaksiProdukSpesifikTransaksi(int id_transaksi){
+    public  LiveData<List<TransaksiProdukCrossRef>> getAllTransaksiProdukSpesifikTransaksi(String id_transaksi){
         LiveData<List<TransaksiProdukCrossRef>> selectedCrossrefs
                 = transaksiProdukCrossDao.getAllTransaksiProdukSpesifikTransaksi(id_transaksi);
         return selectedCrossrefs;
@@ -268,6 +268,24 @@ public class TokoRepository {
         return produkDao.getListProdukById(idProduk);
     }
 
+    public void decreaseProdukStok(int idProduk, int jumlah){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                produkDao.decreaseProdukStok(idProduk,jumlah);
+            }
+        });
+    }
+
+    public void increaseProdukStok(int idProduk, int jumlah){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                produkDao.increaseProdukStok(idProduk,jumlah);
+            }
+        });
+    }
+
     //---------------------------AKHIR PRODUK------------------------------------------------------>
 
 
@@ -317,4 +335,41 @@ public class TokoRepository {
     }
 
     //---------------------------AKHIR CARTS------------------------------------------------------->
+
+
+
+    //------------------------------part KASBON---------------------------------------------------->
+
+    public LiveData<List<Kasbon>> getAllKasbon(){
+        return kasbons;
+    }
+
+    public void updateKasbon(Kasbon kasbon){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                kasbonDao.update(kasbon);
+            }
+        });
+    }
+
+    public void insertKasbon(Kasbon kasbon){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                kasbonDao.insert(kasbon);
+            }
+        });
+    }
+
+    public void deleteKasbon(Kasbon kasbon){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                kasbonDao.delete(kasbon);
+            }
+        });
+    }
+
+    //---------------------------akhir part KASBON------------------------------------------------->
 }

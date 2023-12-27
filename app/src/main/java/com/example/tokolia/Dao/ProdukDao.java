@@ -48,4 +48,12 @@ public interface ProdukDao {
     @Query("SELECT * FROM produk WHERE id_produk = :id_produk")
     LiveData<List<Produk>> getListProdukById(int id_produk);
 
+    @Transaction
+    @Query("UPDATE produk SET stok = stok - :jumlah WHERE id_produk = :id_produk")
+    void decreaseProdukStok(int id_produk, int jumlah);
+
+    @Transaction
+    @Query("UPDATE produk SET stok = stok + :jumlah WHERE id_produk = :id_produk")
+    void increaseProdukStok(int id_produk, int jumlah);
+
 }

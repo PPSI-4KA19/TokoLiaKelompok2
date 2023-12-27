@@ -20,8 +20,6 @@ public class TransaksiViewModel extends AndroidViewModel {
 
     private LiveData<List<TransaksiProdukCrossRef>> transaksiProduks;
     private LiveData<List<Transaksi>> transaksis;
-
-    //coba isi produk
     private LiveData<List<Produk>> produks;
 
     //public List<Produk> listProduk = (List<Produk>) produks;
@@ -54,7 +52,7 @@ public class TransaksiViewModel extends AndroidViewModel {
     }
 
     private LiveData<List<Transaksi>> selectedTransaksis;
-    public LiveData<List<Transaksi>> getTransaksiByDate(Date date){
+    public LiveData<List<Transaksi>> getTransaksiByDate(String date){
         selectedTransaksis = repository.getAllTransaksiOnTanggal(date);
         return selectedTransaksis;
     }
@@ -92,7 +90,7 @@ public class TransaksiViewModel extends AndroidViewModel {
         return transaksiProduks;
     }
 
-    public LiveData<List<TransaksiProdukCrossRef>> getAllCrossRefsById(int id){
+    public LiveData<List<TransaksiProdukCrossRef>> getAllCrossRefsById(String id){
         LiveData<List<TransaksiProdukCrossRef>> selectedTransaksiProduks =
                 repository.getAllTransaksiProdukSpesifikTransaksi(id);
         return selectedTransaksiProduks;
@@ -110,23 +108,6 @@ public class TransaksiViewModel extends AndroidViewModel {
     public void updateProduk(Produk produk){
         repository.updateProduk(produk);
     }
-
-    /*
-    public List<Produk> getProdukById(List<String> listIdProduk){
-        for (String item : listIdProduk) {
-            listProduk.add(repository.getProdukById(Integer.parseInt(item)));
-        }
-        return listProduk;
-    }
-     */
-    /*
-    public LiveData<List<Produk>> getProdukById(List<Produk> produks){
-        for (Produk item : produks) {
-            repository.getProdukById(item.getId_produk());
-
-        }
-    }
-     */
 
     public LiveData<List<Produk>> getListProdukById(int idProduk){
         selectedProduks = repository.getListProdukById(idProduk);

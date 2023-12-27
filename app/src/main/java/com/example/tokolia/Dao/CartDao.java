@@ -4,18 +4,20 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.tokolia.Entites.Cart;
+import com.google.android.material.circularreveal.CircularRevealHelper;
 
 import java.util.List;
 
 @Dao
 public interface CartDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertCart(Cart cart);
     @Delete
     public void deleteCart(Cart cart);

@@ -137,7 +137,7 @@
                     android:id="@+id/textViewTotalHarga"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="45dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="0"
@@ -175,12 +175,13 @@
                     android:id="@+id/editTextBayar"
                     android:layout_width="90dp"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="45dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:fontFamily="@font/poppins_medium"
                     android:hint="input nominal"
                     android:inputType="number"
+                    android:textAlignment="viewEnd"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -214,7 +215,7 @@
                     android:id="@+id/textViewKembalian"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="45dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="0"

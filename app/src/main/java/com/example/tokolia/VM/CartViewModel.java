@@ -7,6 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.tokolia.Entites.Cart;
+import com.example.tokolia.Entites.Kasbon;
+import com.example.tokolia.Entites.Produk;
 import com.example.tokolia.Entites.Transaksi;
 import com.example.tokolia.Entites.TransaksiProdukCrossRef;
 import com.example.tokolia.TokoRepository;
@@ -22,6 +24,8 @@ public class CartViewModel extends AndroidViewModel {
     private LiveData<List<TransaksiProdukCrossRef>> crossref;
     private LiveData<List<Transaksi>> transaksis;
 
+    private LiveData<List<Kasbon>> kasbons;
+
 
     public CartViewModel(@NonNull Application application) {
         super(application);
@@ -30,6 +34,7 @@ public class CartViewModel extends AndroidViewModel {
         carts = repository.getAllCartInfo();
         transaksis = repository.getAllTransaksi();
         crossref = repository.getAllTransaksiProduk();
+        kasbons = repository.getAllKasbon();
 
     }
 
@@ -78,7 +83,7 @@ public class CartViewModel extends AndroidViewModel {
     }
 
     private LiveData<List<Transaksi>> selectedTransaksis;
-    public LiveData<List<Transaksi>> getTransaksiByDate(Date date){
+    public LiveData<List<Transaksi>> getTransaksiByDate(String date){
         selectedTransaksis = repository.getAllTransaksiOnTanggal(date);
         return selectedTransaksis;
     }
@@ -116,7 +121,7 @@ public class CartViewModel extends AndroidViewModel {
         return crossref;
     }
 
-    public LiveData<List<TransaksiProdukCrossRef>> getAllCrossRefsById(int id){
+    public LiveData<List<TransaksiProdukCrossRef>> getAllCrossRefsById(String id){
         LiveData<List<TransaksiProdukCrossRef>> selectedTransaksiProduks =
                 repository.getAllTransaksiProdukSpesifikTransaksi(id);
         return selectedTransaksiProduks;
@@ -124,4 +129,42 @@ public class CartViewModel extends AndroidViewModel {
 
     //-----------------------akhir part transaksiproduk-------------------------------------------->
 
+
+
+
+
+    //----------------------------------part produk------------------------------------------------>
+
+    public void increaseProdukStok(int idProduk, int jumlah){
+        repository.increaseProdukStok(idProduk, jumlah);
+    }
+
+    public void decreaseProdukStok(int idProduk, int jumlah){
+        repository.decreaseProdukStok(idProduk, jumlah);
+    }
+
+    //---------------------------------akhir part produk------------------------------------------->
+
+
+
+
+    //----------------------------------part kasbon------------------------------------------------>
+
+    public LiveData<List<Kasbon>> getAllKasbon(){
+        return kasbons;
+    }
+
+    public void insertKasbon(Kasbon kasbon){
+        repository.insertKasbon(kasbon);
+    }
+
+    public void deleteKasbon(Kasbon kasbon){
+        repository.deleteKasbon(kasbon);
+    }
+
+    public void updateKasbon(Kasbon kasbon){
+        repository.updateKasbon(kasbon);
+    }
+
+    //--------------------------------akhir part kasbon-------------------------------------------->
 }

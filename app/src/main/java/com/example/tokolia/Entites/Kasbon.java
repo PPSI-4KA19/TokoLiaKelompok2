@@ -42,4 +42,5 @@ public class Kasbon {
     public void setSisa_hutang(int sisa_hutang) {
         this.sisa_hutang = sisa_hutang;
     }
+
 }

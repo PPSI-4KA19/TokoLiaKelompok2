@@ -2,4 +2,9 @@
     <string name="app_name">Toko Lia</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="jenis_transaksi">
+        <item>penjualan</item>
+        <item>pakai sendiri</item>
+        <item>hutang</item>
+    </string-array>
 </resources>

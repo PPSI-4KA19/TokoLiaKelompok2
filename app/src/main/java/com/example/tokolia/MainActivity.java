@@ -42,24 +42,24 @@ public class MainActivity extends AppCompatActivity {
                 } else if(item.getItemId() == R.id.transaksi){
                     //buka activity transaksi
                     intent = new Intent(MainActivity.this, TransaksiActivity.class);
-
+                    startActivity(intent);
+                    finish();
                 } else if(item.getItemId() == R.id.produk){
                     //buka activity produk kategori
                     intent = new Intent(MainActivity.this, produkkategori.class);
-
+                    startActivity(intent);
+                    finish();
                 } else if(item.getItemId() == R.id.hutang){
                     //buka activity hutang
 
                 } else if(item.getItemId() == R.id.restok){
                     //buka activity restok
                     intent = new Intent(MainActivity.this, RestokKategori.class);
-
-                }
-
-                if(intent != null){
                     startActivity(intent);
                     finish();
                 }
+
+
                 return true;
             }
         });

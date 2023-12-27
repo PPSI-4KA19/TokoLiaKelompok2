@@ -33,6 +33,7 @@ android {
 
 dependencies {
 
+    implementation("com.google.android.material:material:1.11.0")
     //room version
     val room_version = "2.4.0"
     val lifecycle_version = "2.4.0"

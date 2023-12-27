@@ -1,28 +1,30 @@
 package com.example.tokolia.Entites;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 
 @Entity(tableName = "crossref",primaryKeys = {"id_transaksi","id_produk"} )
 public class TransaksiProdukCrossRef {
-    int id_transaksi;
+    @NonNull
+    String id_transaksi;
     int id_produk;
     int quantity;
     int total;
 
 
 
-    public TransaksiProdukCrossRef(int id_transaksi, int id_produk, int quantity, int total) {
+    public TransaksiProdukCrossRef(String id_transaksi, int id_produk, int quantity, int total) {
         this.id_transaksi = id_transaksi;
         this.id_produk = id_produk;
         this.quantity = quantity;
         this.total = total;
     }
 
-    public int getId_transaksi() {
+    public String getId_transaksi() {
         return id_transaksi;
     }
 
-    public void setId_transaksi(int id_transaksi) {
+    public void setId_transaksi(String id_transaksi) {
         this.id_transaksi = id_transaksi;
     }
 

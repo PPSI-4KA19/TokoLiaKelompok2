@@ -30,5 +30,5 @@ public interface TransaksiProdukCrossDao {
 
     @Transaction
     @Query("SELECT * FROM crossref WHERE id_transaksi = :id_transaksi ORDER BY id_transaksi ASC")
-    LiveData<List<TransaksiProdukCrossRef>> getAllTransaksiProdukSpesifikTransaksi(int id_transaksi);
+    LiveData<List<TransaksiProdukCrossRef>> getAllTransaksiProdukSpesifikTransaksi(String id_transaksi);
 }
