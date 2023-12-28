@@ -14,16 +14,17 @@ public class Transaksi {
     @PrimaryKey(autoGenerate = false)
     String id_transaksi;
     String tanggal;
-
     String jenis_transaksi;
     @Nullable
     String kasbon;
+    //int total; TODO dinyalain
 
     public Transaksi(String id_transaksi, String tanggal, String jenis_transaksi, @Nullable String kasbon) {
         this.id_transaksi = id_transaksi;
         this.tanggal = tanggal;
         this.jenis_transaksi = jenis_transaksi;
         this.kasbon = kasbon;
+        //this.total = total;
     }
 
     public void setId_transaksi(String id_transaksi) {
@@ -37,6 +38,10 @@ public class Transaksi {
     public String getTanggal() {
         return tanggal;
     }
+
+    //public int getTotal() { return total; }
+
+    //public void setTotal(int total) { this.total = total }
 
     public void setTanggal(String tanggal) {
         this.tanggal = tanggal;

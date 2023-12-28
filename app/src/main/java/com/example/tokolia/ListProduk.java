@@ -182,7 +182,7 @@ public class ListProduk extends AppCompatActivity {
                 alert.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        dialog.dismiss();
                         adapter.notifyItemChanged(viewHolder.getAdapterPosition());
                     }
                 });

@@ -7,6 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.tokolia.Entites.Kasbon;
+import com.example.tokolia.Entites.Transaksi;
+import com.example.tokolia.Entites.TransaksiProdukCrossRef;
 import com.example.tokolia.TokoRepository;
 
 import java.util.List;
@@ -14,6 +16,10 @@ import java.util.List;
 public class KasbonViewModel extends AndroidViewModel {
 
     private LiveData<List<Kasbon>> kasbons;
+
+    private LiveData<List<Transaksi>> transaksis;
+
+    private LiveData<List<TransaksiProdukCrossRef>> crossrefs;
 
     TokoRepository repository;
 
@@ -23,8 +29,12 @@ public class KasbonViewModel extends AndroidViewModel {
 
         repository = new TokoRepository(application);
         kasbons = repository.getAllKasbon();
+        transaksis = repository.getAllTransaksi();
+        crossrefs = repository.getAllTransaksiProduk();
 
     }
+
+    //-------------------------------kasbon-------------------------------------------------------->
 
     public void insertKasbon(Kasbon kasbon){
         repository.insertKasbon(kasbon);
@@ -42,5 +52,35 @@ public class KasbonViewModel extends AndroidViewModel {
         return kasbons;
     }
 
+    //---------------------------akhir kasbon------------------------------------------------------>
 
+
+
+    //------------------------------transaksi------------------------------------------------------>
+
+    public LiveData<List<Transaksi>> getAllTransaksi(){
+        return transaksis;
+    }
+
+    LiveData<List<Transaksi>> selectedTransaksis;
+    public LiveData<List<Transaksi>> getTransaksisOnKasbon(String namaKasbon){
+        selectedTransaksis = repository.getAllTransaksiOnKasbon(namaKasbon);
+        return selectedTransaksis;
+    }
+
+    public void updateTransaksi(Transaksi transaksi){
+        repository.updateTransaksi(transaksi);
+    }
+
+    //----------------------------transaksi kasbon------------------------------------------------->
+
+
+
+    //--------------------------------crossrefs---------------------------------------------------->
+
+    public LiveData<List<TransaksiProdukCrossRef>> getAllCrossRefs(){
+        return crossrefs;
+    }
+
+    //-------------------------------akhir crossrefs----------------------------------------------->
 }

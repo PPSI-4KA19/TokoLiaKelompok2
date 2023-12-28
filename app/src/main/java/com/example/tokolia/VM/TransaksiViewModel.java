@@ -22,8 +22,6 @@ public class TransaksiViewModel extends AndroidViewModel {
     private LiveData<List<Transaksi>> transaksis;
     private LiveData<List<Produk>> produks;
 
-    //public List<Produk> listProduk = (List<Produk>) produks;
-
     public TransaksiViewModel(@NonNull Application application) {
         super(application);
 

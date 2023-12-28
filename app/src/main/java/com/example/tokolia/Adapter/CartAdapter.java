@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tokolia.Entites.Cart;
+import com.example.tokolia.Entites.Kasbon;
 import com.example.tokolia.R;
 
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ import java.util.List;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
     List<Cart> cartList = new ArrayList<>();
+
+    List<Kasbon> kasbons = new ArrayList<>();
 
     CartListener listener;
 
@@ -91,6 +94,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return cartList;
     }
 
+    public List<Kasbon> getKasbons(){
+        return kasbons;
+    }
+
     public int getQty(int idProduk){
         int qty = 0;
         for (Cart item : cartList) {
@@ -111,6 +118,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return price;
     }
 
+    public void setKasbons(List<Kasbon> kasbons){
+        this.kasbons = kasbons;
+        notifyDataSetChanged();
+    }
 
     public void setCartList(List<Cart> cartList){
         this.cartList = cartList;

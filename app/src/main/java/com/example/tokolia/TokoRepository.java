@@ -7,12 +7,14 @@ import androidx.lifecycle.LiveData;
 import com.example.tokolia.Dao.CartDao;
 import com.example.tokolia.Dao.KasbonDao;
 import com.example.tokolia.Dao.KategoriDao;
+import com.example.tokolia.Dao.PencatatanDao;
 import com.example.tokolia.Dao.ProdukDao;
 import com.example.tokolia.Dao.TransaksiDao;
 import com.example.tokolia.Dao.TransaksiProdukCrossDao;
 import com.example.tokolia.Entites.Cart;
 import com.example.tokolia.Entites.Kasbon;
 import com.example.tokolia.Entites.Kategori;
+import com.example.tokolia.Entites.Pencatatan;
 import com.example.tokolia.Entites.Produk;
 import com.example.tokolia.Entites.Transaksi;
 import com.example.tokolia.Entites.TransaksiProdukCrossRef;
@@ -30,6 +32,7 @@ public class TokoRepository {
     private TransaksiProdukCrossDao transaksiProdukCrossDao;
     private KasbonDao kasbonDao;
     private CartDao cartDao;
+    private PencatatanDao pencatatanDao;
 
     private LiveData<List<Kategori>> kategoris;
     private LiveData<List<Produk>> produks;
@@ -37,6 +40,7 @@ public class TokoRepository {
     private LiveData<List<TransaksiProdukCrossRef>> transaksiProdukCrossRefs;
     private LiveData<List<Kasbon>> kasbons;
     private LiveData<List<Cart>> carts;
+    private LiveData<List<Pencatatan>> pencatatans;
 
 
     ExecutorService executors = Executors.newSingleThreadExecutor();
@@ -59,9 +63,17 @@ public class TokoRepository {
         //-----------------------------kasbon------------------------------------------------------>
         kasbonDao = database.kasbonDao();
         kasbons = kasbonDao.getAllKasbon();
+
+
+
+
         //------------------------------cart------------------------------------------------------->
         cartDao = database.cartDao();
         carts = cartDao.getALlCartInfo();
+        //----------------------------pencatatan--------------------------------------------------->
+        pencatatanDao = database.pencatatanDao();
+        pencatatans = pencatatanDao.getAllPencatatan();
+
     }
 
 
@@ -337,6 +349,34 @@ public class TokoRepository {
     //---------------------------AKHIR CARTS------------------------------------------------------->
 
 
+
+
+
+    //------------------------------PENCATATAN----------------------------------------------------->
+
+    public void insertPencatatan(Pencatatan pencatatan){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                pencatatanDao.insertPencatatan(pencatatan);
+            }
+        });
+    }
+
+    public void updatePencatatan(Pencatatan pencatatan){
+        executors.execute(new Runnable() {
+            @Override
+            public void run() {
+                pencatatanDao.updatePencatatan(pencatatan);
+            }
+        });
+    }
+
+    public LiveData<List<Pencatatan>> getAllPencatatan(){
+        return pencatatans;
+    }
+
+    //-----------------------------AKHIR PENCATATAN------------------------------------------------>
 
     //------------------------------part KASBON---------------------------------------------------->
 

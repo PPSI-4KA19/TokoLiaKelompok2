@@ -34,16 +34,8 @@ public class KasbonAdapter extends RecyclerView.Adapter<KasbonAdapter.KasbonView
     public void onBindViewHolder(@NonNull KasbonViewHolder holder, int position) {
         Kasbon currentKasbon = kasbons.get(position);
         holder.namaAkun.setText(currentKasbon.getPemilik_kasbon());
-        holder.totalHutang.setText(currentKasbon.getTotal_hutang());
-        holder.sisaHutang.setText(currentKasbon.getSisa_hutang());
-        holder.buttonDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(listener!=null && position != RecyclerView.NO_POSITION){
-                    listener.OnClick(currentKasbon);
-                }
-            }
-        });
+        holder.totalHutang.setText(String.format("Rp %,d",currentKasbon.getTotal_hutang()));
+        holder.sisaHutang.setText(String.format("%,d",currentKasbon.getSisa_hutang()));
     }
 
     @Override
@@ -74,6 +66,16 @@ public class KasbonAdapter extends RecyclerView.Adapter<KasbonAdapter.KasbonView
             totalHutang = itemView.findViewById(R.id.textViewNilaiHutang);
             sisaHutang = itemView.findViewById(R.id.textViewSisaHutang);
             buttonDetail = itemView.findViewById(R.id.buttonDetail);
+
+            buttonDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if(listener!=null && position != RecyclerView.NO_POSITION){
+                        listener.OnClick(kasbons.get(position));
+                    }
+                }
+            });
 
 
         }

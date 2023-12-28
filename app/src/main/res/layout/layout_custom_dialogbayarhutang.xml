@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_cardtransaksi"
+    android:orientation="vertical"
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="25dp">
+
+    <TextView
+        android:id="@+id/textView51"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:text="Pembayaran Hutang"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_horizontal"
+        android:text="Nominal Pembayaran"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/inputPembayaran"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/background_recycler"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_horizontal"
+        android:inputType="number" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonBackBayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Kembali"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
+            app:strokeColor="@color/divider"
+            app:strokeWidth="1dp" />
+
+        <Button
+            android:id="@+id/buttonLanjutBayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Lanjut"
+            android:textSize="16sp"
+            app:cornerRadius="8dp" />
+    </LinearLayout>
+</LinearLayout>

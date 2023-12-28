@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tokolia.Activity.HutangActivity;
 import com.example.tokolia.Activity.TransaksiActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -39,24 +40,31 @@ public class MainActivity extends AppCompatActivity {
                 if(item.getItemId() == R.id.dasbor){
                     Toast.makeText(getApplicationContext(),"Anda berada di halaman Dasbor",
                             Toast.LENGTH_SHORT).show();
+
                 } else if(item.getItemId() == R.id.transaksi){
                     //buka activity transaksi
                     intent = new Intent(MainActivity.this, TransaksiActivity.class);
                     startActivity(intent);
                     finish();
+
                 } else if(item.getItemId() == R.id.produk){
                     //buka activity produk kategori
                     intent = new Intent(MainActivity.this, produkkategori.class);
                     startActivity(intent);
                     finish();
+
                 } else if(item.getItemId() == R.id.hutang){
                     //buka activity hutang
+                    intent = new Intent(MainActivity.this, HutangActivity.class);
+                    startActivity(intent);
+                    finish();
 
                 } else if(item.getItemId() == R.id.restok){
                     //buka activity restok
                     intent = new Intent(MainActivity.this, RestokKategori.class);
                     startActivity(intent);
                     finish();
+
                 }
 
 

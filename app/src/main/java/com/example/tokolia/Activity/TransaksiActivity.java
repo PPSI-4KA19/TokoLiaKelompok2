@@ -1,6 +1,7 @@
 package com.example.tokolia.Activity;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -36,7 +37,6 @@ import com.example.tokolia.TokoRepository;
 import com.example.tokolia.VM.CartViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,6 +44,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -58,6 +59,8 @@ public class TransaksiActivity extends AppCompatActivity {
     EditText inputNominalBayar;
     MaterialToolbar toolbar;
     CartViewModel cartViewModel;
+
+    AlertDialog dialog;
 
     //-------------------------variabel store intent----------------------------------------------->
     int idProduk;
@@ -97,6 +100,13 @@ public class TransaksiActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Cart> cartList) {
                 adapter.setCartList(cartList);
+            }
+        });
+
+        cartViewModel.getAllKasbon().observe(this, new Observer<List<Kasbon>>() {
+            @Override
+            public void onChanged(List<Kasbon> kasbons) {
+                adapter.setKasbons(kasbons);
             }
         });
 
@@ -202,7 +212,7 @@ public class TransaksiActivity extends AppCompatActivity {
                 Button buttonHutang = mView.findViewById(R.id.buttonHutang);
 
                 builder.setView(mView);
-                AlertDialog dialog = builder.create();
+                dialog = builder.create();
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
 
@@ -210,14 +220,16 @@ public class TransaksiActivity extends AppCompatActivity {
                 buttonPenjualan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        dialog.dismiss();
                         AlertDialog.Builder alert = new AlertDialog.Builder(TransaksiActivity.this);
                         alert.setTitle("Konfirmasi Melanjutkan");
                         alert.setMessage("Sudah yakin dengan transaksi?");
+
                         alert.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                setChangesAfterTransaction(adapter,"penjualan");
+                                setChangesAfterTransaction(adapter,"penjualan",null);
                                 dialog.dismiss();
                             }
                         });
@@ -227,11 +239,11 @@ public class TransaksiActivity extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                         });
-                        AlertDialog dialogConfirm = alert.create();
-                        dialogConfirm.show();
-
+                        dialog = alert.create();
+                        dialog.show();
                     }
                 });
+
                 //--------------------------akhir pilih penjualan---------------------------------->
 
 
@@ -240,14 +252,16 @@ public class TransaksiActivity extends AppCompatActivity {
                 buttonPakai.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        dialog.dismiss();
                         AlertDialog.Builder alert = new AlertDialog.Builder(TransaksiActivity.this);
                         alert.setTitle("Konfirmasi Melanjutkan");
                         alert.setMessage("Sudah yakin dengan transaksi?");
+
                         alert.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                setChangesAfterTransaction(adapter,"pemakaian sendiri");
+                                setChangesAfterTransaction(adapter,"pemakaian sendiri",null);
                                 dialog.dismiss();
                             }
                         });
@@ -257,18 +271,19 @@ public class TransaksiActivity extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                         });
-                        AlertDialog dialogConfirm = alert.create();
-                        dialogConfirm.show();
+                        dialog = alert.create();
+                        dialog.show();
+
                     }
                 });
                 //--------------------------akhir pilih pemakaian sendiri-------------------------->
 
 
                 //-----------------------------pilih hutang---------------------------------------->
-                //todo dikelarin
                 buttonHutang.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        dialog.dismiss();
                         AlertDialog.Builder pilihAkun = new AlertDialog.Builder(TransaksiActivity.this);
                         View customView = getLayoutInflater()
                                 .inflate(R.layout.layout_custom_dialog_pilihkasbon,null);
@@ -278,35 +293,53 @@ public class TransaksiActivity extends AppCompatActivity {
                         Button buttonSave = customView.findViewById(R.id.buttonSimpanPilihanAkunHutang);
 
                         pilihAkun.setView(customView);
-                        AlertDialog kasbon = pilihAkun.create();
-                        kasbon.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        dialog = pilihAkun.create();
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                        kasbon.setCancelable(false);
-                        /*
                         //----------------------------setup spinner items-------------------------->
+
                         ArrayList<String> kasbonList = new ArrayList<String>();
+                        List<Kasbon> kasbonCont = adapter.getKasbons();
+                        for(Kasbon item : kasbonCont){
+                            kasbonList.add(item.getPemilik_kasbon());
+                        }
+
                         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getApplicationContext(),
                                 android.R.layout.simple_spinner_item, kasbonList);
+                        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(spinnerAdapter);
 
-                        cartViewModel.getAllKasbon().observe(this, new Observer<List<Kasbon>>() {
+                        dialog.show();
+
+                        //------------------------akhir setup spinner item------------------------->
+
+
+                        //---------------------------setup tombol simpan--------------------------->
+
+                        buttonSave.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onChanged(List<Kasbon> kasbons) {
-                                for(Kasbon item : kasbons){
-                                    kasbonList.add(item.getPemilik_kasbon());
+                            public void onClick(View v) {
+                                String selectedKasbon = spinner.getSelectedItem().toString();
+                                setChangesAfterTransaction(adapter,"hutang",selectedKasbon);
+                                int tambahHutang = 0;
+                                int tambahSisaHutang = 0;
+                                for(Kasbon item : kasbonCont){
+                                    if(item.getPemilik_kasbon().equals(selectedKasbon)){
+                                        tambahHutang = item.getTotal_hutang() + total;
+                                        tambahSisaHutang = item.getSisa_hutang() + total;
+                                    }
                                 }
-                                adapter.notifyDataSetChanged();
+                                Kasbon pembaruan = new Kasbon(selectedKasbon,tambahHutang,tambahSisaHutang);
+                                cartViewModel.updateKasbon(pembaruan);
+                                dialog.dismiss();
                             }
                         });
-                        //------------------------akhir setup spinner item------------------------->
-                         */
+
+                        //-------------------------akhir setup tombol simpan----------------------->
                     }
                 });
 
                 //--------------------------akhir pilih hutang------------------------------------->
-
-
-
 
                 dialog.show();
             }
@@ -370,12 +403,18 @@ public class TransaksiActivity extends AppCompatActivity {
 
     }
 
-    public void setChangesAfterTransaction(CartAdapter adapter, String jenisTransaksi){
-        Calendar calendar = Calendar.getInstance();
+    public void setChangesAfterTransaction(CartAdapter adapter, String jenisTransaksi, @Nullable String kasbon){
+        //Calendar calendar = Calendar.getInstance();
 
-        idTransaksi = calendar.getTime().toString();
-        String date = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
-        Transaksi create = new Transaksi(idTransaksi,date,jenisTransaksi,null);
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        idTransaksi = sdf.format(d);
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
+        String date = sdf2.format(d);
+
+        //idTransaksi = calendar.getTime().toString();
+        //String date = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
+        Transaksi create = new Transaksi(idTransaksi,date,jenisTransaksi,kasbon);
         cartViewModel.insertTransaksi(create);
 
         List<Cart> newList = adapter.getCartList();
@@ -400,6 +439,14 @@ public class TransaksiActivity extends AppCompatActivity {
     protected void onDestroy() {
         cartViewModel.clearCart();
         super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        if(dialog!=null){
+            dialog.dismiss();
+        }
+        super.onPause();
     }
 }
 
