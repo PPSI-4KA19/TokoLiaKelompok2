@@ -33,5 +33,11 @@
         android:layout_height="wrap_content"
         android:title="Hutang"
         app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="History"
+        app:showAsAction="collapseActionView"/>
 
 </menu>

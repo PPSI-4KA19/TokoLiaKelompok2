@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tokolia.Activity.HistoryActivity;
 import com.example.tokolia.Activity.HutangActivity;
 import com.example.tokolia.Activity.TransaksiActivity;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -65,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
 
+                } else if(item.getItemId() == R.id.history){
+                    //buka history
+                    intent = new Intent(MainActivity.this, HistoryActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
 

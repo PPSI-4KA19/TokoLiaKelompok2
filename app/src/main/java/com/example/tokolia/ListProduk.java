@@ -308,33 +308,6 @@ public class ListProduk extends AppCompatActivity {
 
 
     /* TODO FILTER METHOD
-    //---------------------------------SEARCH VIEW------------------------------------------------->
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_edit, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-        searchView.setQueryHint("Ketikan pencarian");
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-
-        return true;
-    }
-    //-----------------------------AKHIR SEARCH VIEW----------------------------------------------->
+    
     */
 }

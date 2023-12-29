@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.tokolia.Adapter.ProdukRestokAdapter;
@@ -31,6 +32,8 @@ public class RestokListProduk extends AppCompatActivity {
     MaterialToolbar toolbar;
     ProdukRestokAdapter adapter;
     private ProdukViewModel produkViewModel;
+
+    SearchView searchView;
 
     //container penyimpan intent
     String namaKategori;
@@ -68,7 +71,6 @@ public class RestokListProduk extends AppCompatActivity {
 
 
         //--------------------------tombol restok-------------------------------------------------->
-        //CEK INI KALO ERROR
         adapter.setOnItemClickListener(new ProdukRestokAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Produk produk) {
@@ -175,6 +177,26 @@ public class RestokListProduk extends AppCompatActivity {
         });
         //-----------------------------akhir backpress--------------------------------------------->
 
+
+
+
+        //------------------------------fungsi search---------------------------------------------->
+
+        searchView = findViewById(R.id.searchProdukRestok);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        //----------------------------akhir fungsi search------------------------------------------>
     }
 
     public void getData(){

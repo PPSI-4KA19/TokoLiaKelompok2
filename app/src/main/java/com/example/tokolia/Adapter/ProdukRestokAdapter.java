@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,12 +17,13 @@ import com.example.tokolia.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdukRestokAdapter extends RecyclerView.Adapter<ProdukRestokAdapter.ProdukHolder> {
+public class ProdukRestokAdapter extends RecyclerView.Adapter<ProdukRestokAdapter.ProdukHolder> implements Filterable {
 
 
     private OnItemClickListener listener;
     private List<Produk> produks = new ArrayList<>();
-    //TODO coba buat fitur search disini - lebih simple
+
+    private List<Produk> produksFull;
 
     @NonNull
     @Override
@@ -48,8 +51,8 @@ public class ProdukRestokAdapter extends RecyclerView.Adapter<ProdukRestokAdapte
     }
 
     public void setProduks(List<Produk> produks){
-
         this.produks = produks;
+        produksFull = new ArrayList<>(produks);
         notifyDataSetChanged();
 
     }
@@ -57,6 +60,39 @@ public class ProdukRestokAdapter extends RecyclerView.Adapter<ProdukRestokAdapte
     public Produk getProduk(int position){
         return produks.get(position);
     }
+
+    @Override
+    public Filter getFilter() {
+        return filterProduk;
+    }
+
+    public Filter filterProduk = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Produk> searchedProduk = new ArrayList<>();
+            if(constraint == null || constraint.length() == 0){
+                searchedProduk.addAll(produksFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for(Produk item : produksFull) {
+                    if (item.getNama_produk().toLowerCase().contains(filterPattern)) {
+                        searchedProduk.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = searchedProduk;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            produks.clear();
+            produks.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 
     class ProdukHolder extends RecyclerView.ViewHolder{
