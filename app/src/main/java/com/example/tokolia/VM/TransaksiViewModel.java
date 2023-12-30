@@ -11,7 +11,6 @@ import com.example.tokolia.Entites.Transaksi;
 import com.example.tokolia.Entites.TransaksiProdukCrossRef;
 import com.example.tokolia.TokoRepository;
 
-import java.util.Date;
 import java.util.List;
 
 public class TransaksiViewModel extends AndroidViewModel {

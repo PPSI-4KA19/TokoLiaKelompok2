@@ -24,10 +24,7 @@ import com.example.tokolia.Entites.Transaksi;
 import com.example.tokolia.Entites.TransaksiProdukCrossRef;
 import com.example.tokolia.R;
 import com.example.tokolia.VM.KasbonViewModel;
-import com.example.tokolia.VM.TransaksiViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

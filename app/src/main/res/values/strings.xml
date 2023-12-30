@@ -3,8 +3,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="jenis_transaksi">
-        <item>penjualan</item>
-        <item>pakai sendiri</item>
-        <item>hutang</item>
+        <item>pilih jenis transaksi</item>
+        <item>Transaksi Penjualan</item>
+        <item>Transaksi Pemakaian Sendiri</item>
+        <item>Transaksi Kasbon</item>
     </string-array>
 </resources>
