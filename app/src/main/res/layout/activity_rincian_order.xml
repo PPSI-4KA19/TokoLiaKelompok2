@@ -28,14 +28,14 @@
             app:buttonGravity="center_vertical"
             app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
             app:navigationIconTint="@color/white"
-            android:paddingStart="20dp"/>
+            android:paddingStart="15dp"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <View
         style="@style/Divider"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/divider"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout7" />
@@ -56,7 +56,7 @@
             android:id="@+id/textView25"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center_horizontal"
             android:text="Toko Lia"

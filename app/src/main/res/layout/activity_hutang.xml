@@ -24,7 +24,7 @@
             app:titleTextColor="@color/white"
             app:buttonGravity="center_vertical"
             app:titleCentered="true"
-            android:paddingStart="10dp"
+            android:paddingStart="15dp"
             />
 
         <View

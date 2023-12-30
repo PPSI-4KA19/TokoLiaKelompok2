@@ -33,39 +33,42 @@
 
     <Button
         android:id="@+id/buttonPenjualan"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="#A9FFA7"
         android:fontFamily="@font/poppins_medium"
         android:text="Penjualan"
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:cornerRadius="10dp"
         app:strokeColor="@color/design_default_color_secondary_variant"
         app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/buttonPemakaian"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/poppins_medium"
         android:text="Pemakaian Sendiri"
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:cornerRadius="10dp"
         app:strokeColor="@color/mainorange"
         app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/buttonHutang"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="#FF9696"
         android:fontFamily="@font/poppins_medium"
         android:text="Hutang"
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:cornerRadius="10dp"
         app:strokeColor="@color/redish"
         app:strokeWidth="1dp" />

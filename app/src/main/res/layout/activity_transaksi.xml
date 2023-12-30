@@ -21,13 +21,14 @@
             android:layout_gravity="center_vertical"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            android:paddingStart="30dp"
+            android:paddingStart="15dp"
             android:paddingEnd="30dp"
             android:theme="?attr/actionBarTheme"
             app:buttonGravity="center_vertical"
             app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
             app:navigationIconTint="@color/white"
             app:title="Transaksi Baru"
+            app:titleCentered="true"
             app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title2"
             app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
@@ -122,7 +123,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Total Harga"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView29"
@@ -131,18 +132,18 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Rp"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textViewTotalHarga"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="45dp"
+                    android:layout_marginEnd="25dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="0"
                     android:textAlignment="viewEnd"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -160,7 +161,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Bayar"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView33"
@@ -169,20 +170,20 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Rp"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/editTextBayar"
                     android:layout_width="90dp"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="45dp"
+                    android:layout_marginEnd="25dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:fontFamily="@font/poppins_medium"
                     android:hint="input nominal"
                     android:inputType="number"
                     android:textAlignment="viewEnd"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -200,7 +201,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Kembalian"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView34"
@@ -209,18 +210,18 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Rp"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textViewKembalian"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="45dp"
+                    android:layout_marginEnd="25dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="0"
                     android:textAlignment="viewEnd"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -232,9 +233,9 @@
                     android:id="@+id/buttonCancelTransaksi"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="25dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/poppins_medium"
@@ -249,9 +250,9 @@
                     android:id="@+id/buttonProsesTransaksi"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="25dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Proses"

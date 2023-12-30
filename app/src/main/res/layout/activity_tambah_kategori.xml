@@ -24,6 +24,7 @@
             app:buttonGravity="center_vertical"
             app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
             app:title="Tambah Kategori"
+            app:titleCentered="true"
             app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title2" />
 
     </com.google.android.material.appbar.AppBarLayout>

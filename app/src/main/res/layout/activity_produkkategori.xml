@@ -28,7 +28,7 @@
             app:menu="@menu/toolbar_menu"
             app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
             app:title="Kategori Produk"
-            app:titleMarginStart="30dp"
+            app:titleCentered="true"
             app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title2"
             />
 
