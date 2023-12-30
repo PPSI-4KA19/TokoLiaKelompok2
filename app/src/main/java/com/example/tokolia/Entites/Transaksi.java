@@ -17,7 +17,6 @@ public class Transaksi {
     String jenis_transaksi;
     @Nullable
     String kasbon;
-    //int total; TODO dinyalain
 
     public Transaksi(String id_transaksi, String tanggal, String jenis_transaksi, @Nullable String kasbon) {
         this.id_transaksi = id_transaksi;

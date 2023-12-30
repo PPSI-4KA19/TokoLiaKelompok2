@@ -131,6 +131,15 @@
             app:strokeColor="@color/divider"
             app:strokeWidth="1dp" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mainIndex"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/card_view_dashboard"
+            android:paddingStart="30dp"/>
+
+
+        <!--
         <LinearLayout
             android:id="@+id/layoutPemasukan"
             android:layout_width="230dp"
@@ -276,6 +285,6 @@
                     android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
-
+        -->
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

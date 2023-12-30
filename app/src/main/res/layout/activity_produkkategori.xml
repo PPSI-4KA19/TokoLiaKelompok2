@@ -25,7 +25,6 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:buttonGravity="center_vertical"
-            app:menu="@menu/toolbar_menu"
             app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
             app:title="Kategori Produk"
             app:titleCentered="true"

@@ -51,6 +51,7 @@ public abstract class TokoDatabase extends RoomDatabase {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     TokoDatabase.class, "toko_database")
                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .addCallback(roomCallBack)
                     .build();
 

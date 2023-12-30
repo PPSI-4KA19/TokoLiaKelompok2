@@ -42,40 +42,13 @@ public class RestokKategori extends AppCompatActivity {
         //-----------------------------TOOLBAR----------------------------------------------------->
 
         toolbar = findViewById(R.id.kategoriRestokToolbar);
-        toolbar.setOverflowIcon(AppCompatResources.getDrawable(this,R.drawable.baseline_menu_24));
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-                Intent intent = new Intent();
-                if(item.getItemId() == R.id.dasbor){
-                    //buka main activity
-                    intent = new Intent(RestokKategori.this, MainActivity.class);
-
-                } else if(item.getItemId() == R.id.transaksi){
-                    //buka activity transaksi
-                    intent = new Intent(RestokKategori.this, MainActivity.class);
-
-                } else if(item.getItemId() == R.id.produk){
-                    //buka activity produk kategori
-                    intent = new Intent(RestokKategori.this, produkkategori.class);
-
-
-                } else if(item.getItemId() == R.id.hutang){
-                    //buka activity hutang
-
-                } else if(item.getItemId() == R.id.restok){
-                    //buka activity restok
-                    Toast.makeText(getApplicationContext(),"Anda berada di halaman Restok",
-                            Toast.LENGTH_SHORT).show();
-
-                }
-
-                if(intent != null){
-                    startActivity(intent);
-                    finish();
-                }
-                return true;
+            public void onClick(View v) {
+                Intent back = new Intent(RestokKategori.this,MainActivity.class);
+                startActivity(back);
+                finish();
             }
         });
 
@@ -141,15 +114,6 @@ public class RestokKategori extends AppCompatActivity {
             }
         });
 
-        //back toolbar
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back = new Intent(RestokKategori.this,MainActivity.class);
-                startActivity(back);
-                finish();
-            }
-        });
         //---------------------------akhir backpress----------------------------------------------->
     }
 }

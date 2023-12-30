@@ -48,43 +48,21 @@ public class produkkategori extends AppCompatActivity {
         //register activity
         registerActivityAddKategori();
 
-        //toolbar setup
+
+        //----------------------------------toolbar setup------------------------------------------>
         toolbar = findViewById(R.id.kategoriToolbar);
-        toolbar.setOverflowIcon(AppCompatResources.getDrawable(this,R.drawable.baseline_menu_24));
-        //set navigasi dari overflow
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-                if(item.getItemId() == R.id.dasbor){
-                    //buka dashboard
-                    Intent bukaProduk = new Intent(produkkategori.this, MainActivity.class);
-                    startActivity(bukaProduk);
-                    finish();
-
-                } else if(item.getItemId() == R.id.transaksi){
-                    //buka activity transaksi
-                    Intent bukaTransaksi = new Intent(produkkategori.this, TransaksiActivity.class);
-                    startActivity(bukaTransaksi);
-                    finish();
-
-                } else if(item.getItemId() == R.id.produk){
-                    //buka activity produk kategori
-                    Toast.makeText(getApplicationContext(),"Anda berada di halaman Produk",
-                            Toast.LENGTH_SHORT).show();
-
-                } else if(item.getItemId() == R.id.hutang){
-                    //buka activity hutang
-
-                } else if(item.getItemId() == R.id.restok){
-                    //buka activity restok
-                    Intent bukaRestok = new Intent(produkkategori.this, RestokKategori.class);
-                    startActivity(bukaRestok);
-                    finish();
-                }
-                return true;
+            public void onClick(View v) {
+                Intent back = new Intent(produkkategori.this,MainActivity.class);
+                startActivity(back);
+                finish();
             }
         });
+        //----------------------------akhir toolbar setup------------------------------------------>
+
+
 
 
 
@@ -122,11 +100,11 @@ public class produkkategori extends AppCompatActivity {
         kategoriViewModel.deleteKategori(hapus);
         //---------------------------AKHIR DELETE KATEGORI----------------------------------------->
 
-
-
-
-
         //-----------------end menampilkan kategori------------------------------------------------>
+
+
+
+
 
         //-----------------open list produk dalam kategori----------------------------------------->
         kategoriAdapter.setOnItemClickListener(new KategoriAdapter.OnItemClickListener() {
@@ -143,9 +121,7 @@ public class produkkategori extends AppCompatActivity {
 
             }
         });
-
         //------------------akhir open list produk dalam kategori---------------------------------->
-
 
 
 
@@ -167,7 +143,7 @@ public class produkkategori extends AppCompatActivity {
 
 
 
-        //------------------------- back press ---------------------------------------------------->
+        //---------------------------back press---------------------------------------------------->
 
         //backpress handling
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
@@ -179,15 +155,6 @@ public class produkkategori extends AppCompatActivity {
             }
         });
 
-        //back toolbar
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back = new Intent(produkkategori.this,MainActivity.class);
-                startActivity(back);
-                finish();
-            }
-        });
         //-------------------------akhir backpress------------------------------------------------->
     }
 

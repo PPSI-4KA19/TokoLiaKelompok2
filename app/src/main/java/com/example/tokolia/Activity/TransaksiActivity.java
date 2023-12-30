@@ -68,14 +68,12 @@ public class TransaksiActivity extends AppCompatActivity {
     int hargaProduk;
     int modalProduk;
     int stokProduk;
-    String kategoriProduk;
     Intent getIntent;
     //--------------------------akhir store intent------------------------------------------------->
 
     //------------------------------variabel transaksi--------------------------------------------->
     String idTransaksi;
     int total;
-    //List<Integer> produkIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,14 +111,12 @@ public class TransaksiActivity extends AppCompatActivity {
         if(idProduk != 0){
             Cart cartBaru = new Cart(idProduk, namaProduk,hargaProduk,1,stokProduk);
             cartViewModel.insertCart(cartBaru);
-            //produkIds.add(idProduk);
         }
 
         adapter.setCartListener(new CartAdapter.CartListener() {
             @Override
             public void onRemove(Cart cart) {
                 cartViewModel.deleteCart(cart);
-                //produkIds.remove(cart.getIdProduk());
             }
 
             @Override
@@ -383,16 +379,6 @@ public class TransaksiActivity extends AppCompatActivity {
 
 
 
-
-    //--------------------------------initiate transaksi------------------------------------------->
-
-    public void initiateTransaksi(){
-
-    }
-
-    //-----------------------------akhir initiate transaksi---------------------------------------->
-
-
     public void getData(){
         getIntent = getIntent();
         namaProduk = getIntent.getStringExtra("nama_produk");
@@ -412,8 +398,6 @@ public class TransaksiActivity extends AppCompatActivity {
         SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
         String date = sdf2.format(d);
 
-        //idTransaksi = calendar.getTime().toString();
-        //String date = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
         Transaksi create = new Transaksi(idTransaksi,date,jenisTransaksi,kasbon);
         cartViewModel.insertTransaksi(create);
 
