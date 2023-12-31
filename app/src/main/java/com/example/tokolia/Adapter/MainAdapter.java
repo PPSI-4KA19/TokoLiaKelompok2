@@ -43,40 +43,38 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainActivityVi
     public void onBindViewHolder(@NonNull MainActivityViewHolder holder, int position) {
         Pencatatan currentIndex = index.get(position);
         holder.index.setText(currentIndex.getJenis());
-
         int total = 0;
-        if(currentIndex.getJenis().equals("Pemasukan")){
-            for (TransaksiProdukCrossRef refs : crossRefList){
-                for (Transaksi item : transaksiList){
-                    if (item.getJenis_transaksi().equals("penjualan")){
-                        /*if (refs.getId_transaksi().equals(item.getId_transaksi())
-                                && refs.getId_transaksi().substring(0,4).equals(tahun)
-                                && refs.getId_transaksi().substring(4,6).equals(bulan)){
 
-                            total += refs.getTotal();
+        if(transaksiList.size()==0){
 
-                        }*/
-                        if(refs.getId_transaksi().equals(item.getId_transaksi())){
-                            total += refs.getTotal();
+        } else {
+
+            if (currentIndex.getJenis().equals("Pemasukan")) {
+                for (TransaksiProdukCrossRef refs : crossRefList) {
+                    for (Transaksi item : transaksiList) {
+                        if (item.getJenis_transaksi().equals("penjualan")) {
+                            if (refs.getId_transaksi().equals(item.getId_transaksi())) {
+                                total += refs.getTotal();
+                            }
                         }
                     }
                 }
-            }
-        } else if (currentIndex.getJenis().equals("Hutang")){
-            for (TransaksiProdukCrossRef refs : crossRefList){
-                for(Transaksi item : transaksiList){
-                    if(item.getJenis_transaksi().equals("hutang")){
-                        if(refs.getId_transaksi().equals(item.getId_transaksi())){
-                            total += refs.getTotal();
+            } else if (currentIndex.getJenis().equals("Hutang")) {
+                for (TransaksiProdukCrossRef refs : crossRefList) {
+                    for (Transaksi item : transaksiList) {
+                        if (item.getJenis_transaksi().equals("hutang")) {
+                            if (refs.getId_transaksi().equals(item.getId_transaksi())) {
+                                total += refs.getTotal();
+                            }
                         }
                     }
                 }
-            }
-        } else if (currentIndex.getJenis().equals("Pengeluaran")){
-            for (TransaksiProdukCrossRef refs : crossRefList){
-                for(Produk item : produkList){
-                    if(refs.getId_produk() == item.getId_produk()){
-                        total += refs.getQuantity()*item.getHarga_modal();
+            } else if (currentIndex.getJenis().equals("Pengeluaran")) {
+                for (TransaksiProdukCrossRef refs : crossRefList) {
+                    for (Produk item : produkList) {
+                        if (refs.getId_produk() == item.getId_produk()) {
+                            total += refs.getQuantity() * item.getHarga_modal();
+                        }
                     }
                 }
             }

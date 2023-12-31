@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -29,6 +30,7 @@ import com.example.tokolia.Entites.TransaksiProdukCrossRef;
 import com.example.tokolia.VM.MainViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     MainViewModel viewModel;
 
     Spinner pilihTahun;
+    Spinner pilihBulan;
     Button buttonSelect;
 
 
@@ -96,9 +99,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //----------------------------------spinner------------------------------------------------>
+        pilihBulan = findViewById(R.id.spinnerBulan);
         pilihTahun = findViewById(R.id.spinnerTahun);
-        //ArrayAdapter spinnerAdapter = new ArrayAdapter(getApplicationContext())
-        buttonSelect = findViewById(R.id.button);
+        ArrayAdapter adapterBulan = ArrayAdapter.createFromResource(this, R.array.bulan,
+                android.R.layout.simple_spinner_item);
+        adapterBulan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pilihBulan.setAdapter(adapterBulan);
+
+        ArrayAdapter adapterTahun = ArrayAdapter.createFromResource(this, R.array.tahun,
+                android.R.layout.simple_spinner_item);
+        adapterTahun.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pilihTahun.setAdapter(adapterTahun);
+        //-----------------------------------akhir spinner----------------------------------------->
+
+
+
+
 
         //----------------------------recycler view------------------------------------------------>
 
@@ -135,5 +152,53 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //------------------------------------set periode------------------------------------------>
+
+
+        buttonSelect = findViewById(R.id.button);
+        buttonSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String month = pilihBulan.getSelectedItem().toString();
+                String year = pilihTahun.getSelectedItem().toString();
+
+                if(!year.equals("pilih tahun")
+                        && !month.equals("pilih bulan")){
+                    viewModel.getAllTransaksi().observe(MainActivity.this, new Observer<List<Transaksi>>() {
+                        @Override
+                        public void onChanged(List<Transaksi> transaksis) {
+                            List<Transaksi> container = new ArrayList<>();
+                            for(Transaksi item : transaksis){
+                                if (item.getId_transaksi().substring(0,6).equals(year+month)){
+                                    container.add(item);
+                                }
+                            }
+                            adapter.setTransaksiList(container);
+                        }
+                    });
+                } else if(!year.equals("pilih tahun")){
+                    viewModel.getAllTransaksi().observe(MainActivity.this, new Observer<List<Transaksi>>() {
+                        @Override
+                        public void onChanged(List<Transaksi> transaksis) {
+                            List<Transaksi> container = new ArrayList<>();
+                            for(Transaksi item : transaksis){
+                                if(item.getId_transaksi().substring(0,4).equals(year)){
+                                    container.add(item);
+                                }
+                            }
+                            adapter.setTransaksiList(container);
+                        }
+                    });
+                } else {}
+            }
+        });
+
+        //--------------------------------akhir set periode---------------------------------------->
+
+        //textTahun.setText();
+        //nominalPemasukan.setText("" + pemasukan);
+        //nominalPengeluaran.setText("" + pengeluaran);
+        //nominalHutang.setText("" + hutang);
     }
 }

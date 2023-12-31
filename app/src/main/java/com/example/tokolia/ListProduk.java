@@ -303,11 +303,4 @@ public class ListProduk extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-    /* TODO FILTER METHOD
-    
-    */
 }

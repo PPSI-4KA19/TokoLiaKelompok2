@@ -178,7 +178,6 @@ public class TokoRepository {
     public List<TransaksiProdukCrossRef> getListCrossRefById(String id){
         return transaksiProdukCrossDao.getListCrossRefById(id);
     }
-
     //-------------------------AKHIR TRANSAKSI PRODUK (CROSSREFF)---------------------------------->
 
 
@@ -300,10 +299,6 @@ public class TokoRepository {
                 produkDao.increaseProdukStok(idProduk,jumlah);
             }
         });
-    }
-
-    public List<Produk> getListProduk(){
-        return produkDao.getProduks();
     }
 
     public List<Produk> getListSpesifikProduk(int id){
