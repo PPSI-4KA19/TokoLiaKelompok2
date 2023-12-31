@@ -1,8 +1,11 @@
 package com.example.tokolia.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -78,10 +81,18 @@ public class RincianOrderActivity extends AppCompatActivity {
 
 
 
-        //TODO button download
         //------------------------------button download-------------------------------------------->
 
+        buttonDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                askPermission();
 
+                Intent print = new Intent(RincianOrderActivity.this, MakePdfActivity.class);
+                print.putExtra("idTransaksi",transId);
+                startActivity(print);
+            }
+        });
 
         //--------------------------akhir button download------------------------------------------>
 
@@ -92,6 +103,12 @@ public class RincianOrderActivity extends AppCompatActivity {
         Intent intent = new Intent(RincianOrderActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void askPermission(){
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE},
+                PackageManager.PERMISSION_GRANTED);
     }
 
 }

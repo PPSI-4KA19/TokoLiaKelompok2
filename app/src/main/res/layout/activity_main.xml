@@ -87,14 +87,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Pilih Periode :"
+                android:text="Periode Tahun"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -103,18 +103,12 @@
             android:paddingEnd="25dp">
 
             <Spinner
-                android:id="@+id/spinnerBulan"
+                android:id="@+id/spinnerTahun"
                 android:layout_width="50dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1" />
 
-            <Spinner
-                android:id="@+id/spinnerTahun"
-                android:layout_width="60dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1" />
         </LinearLayout>
 
         <Button

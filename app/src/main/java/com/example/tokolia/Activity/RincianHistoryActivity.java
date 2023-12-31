@@ -1,5 +1,6 @@
 package com.example.tokolia.Activity;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -55,7 +57,6 @@ public class RincianHistoryActivity extends AppCompatActivity {
     String nominal;
     //-----------------------------akhir container intent------------------------------------------>
 
-    final static int REQUEST_CODE = 1234;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,68 +137,33 @@ public class RincianHistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 askPermission();
-                //createPDF();
+
+                Intent print = new Intent(RincianHistoryActivity.this, MakePdfActivity.class);
+                print.putExtra("idTransaksi",idTransaksi);
+                startActivity(print);
             }
         });
 
         //---------------------------akhir button PDF---------------------------------------------->
 
+
+
+        //backpress
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent back = new Intent(RincianHistoryActivity.this, HistoryActivity.class);
+                startActivity(back);
+                finish();
+            }
+        });
+
     }
 
     private void askPermission(){
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                REQUEST_CODE);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE},
+                PackageManager.PERMISSION_GRANTED);
     }
-
-    /*
-    private void createPDF(){
-
-        View view = LayoutInflater.from(this).inflate(R.layout.activity_rincian_history, null);
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            this.getDisplay().getRealMetrics(displayMetrics);
-        } else {
-            this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        }
-
-        view.measure(View.MeasureSpec.makeMeasureSpec(displayMetrics.widthPixels, View.MeasureSpec.EXACTLY),
-                View.MeasureSpec.makeMeasureSpec(displayMetrics.heightPixels, View.MeasureSpec.EXACTLY));
-
-        view.layout(0,0, displayMetrics.widthPixels, displayMetrics.heightPixels);
-        PdfDocument document = new PdfDocument();
-
-        //int viewWidth = view.getMeasuredWidth();
-        //int viewHeight = view.getMeasuredHeight();
-
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo
-                .Builder(1080, 1920, 1).create();
-        PdfDocument.Page page = document.startPage(pageInfo);
-
-        //Canvas
-        Canvas canvas = page.getCanvas();
-        view.draw(canvas);
-
-        //Finish page
-        document.finishPage(page);
-
-        //Download directory
-        File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        String filename = "struk_" + idTransaksi +".pdf";
-        File file = new File(downloadsDir,filename);
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            document.writeTo(fos);
-            document.close();
-            fos.close();
-            Toast.makeText(this,"Struk berhasil didownload",
-                    Toast.LENGTH_SHORT).show();
-        } catch (FileNotFoundException e){
-            Log.d("Message","Error while writing " + e.toString());
-            throw new RuntimeException(e);
-        } catch (IOException e){
-            throw new RuntimeException(e);
-        }
-    }*/
 
 }

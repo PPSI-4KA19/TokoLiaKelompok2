@@ -62,6 +62,12 @@ public class MainViewModel extends AndroidViewModel {
     public LiveData<List<TransaksiProdukCrossRef>> getAllCrossRefs(){
         return crossrefs;
     }
+
+    public LiveData<List<TransaksiProdukCrossRef>> getCrossrefsById(String id){
+        LiveData<List<TransaksiProdukCrossRef>> selectedCrossrefs =
+                repository.getAllTransaksiProdukSpesifikTransaksi(id);
+        return selectedCrossrefs;
+    }
     //------------------------------akhir crossrefs------------------------------------------------>
 
 

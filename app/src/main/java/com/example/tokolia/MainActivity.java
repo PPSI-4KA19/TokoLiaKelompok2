@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     MainViewModel viewModel;
 
-    Spinner pilihBulan;
     Spinner pilihTahun;
     Button buttonSelect;
 
@@ -94,9 +95,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //text tahun
-        pilihBulan = findViewById(R.id.spinnerBulan);
+
         pilihTahun = findViewById(R.id.spinnerTahun);
+        //ArrayAdapter spinnerAdapter = new ArrayAdapter(getApplicationContext())
         buttonSelect = findViewById(R.id.button);
 
         //----------------------------recycler view------------------------------------------------>
@@ -134,9 +135,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //textTahun.setText();
-        //nominalPemasukan.setText("" + pemasukan);
-        //nominalPengeluaran.setText("" + pengeluaran);
-        //nominalHutang.setText("" + hutang);
     }
 }

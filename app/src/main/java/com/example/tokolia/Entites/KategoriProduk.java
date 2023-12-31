@@ -1,4 +1,4 @@
-package com.example.tokolia;
+package com.example.tokolia.Entites;
 
 import androidx.room.Embedded;
 import androidx.room.Relation;
