@@ -1,5 +1,6 @@
 package com.example.tokolia.Activity;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -101,6 +102,8 @@ public class HutangActivity extends AppCompatActivity {
 
 
 
+
+
         //---------------------------------tombol tambah akun-------------------------------------->
         addAkun.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,6 +162,8 @@ public class HutangActivity extends AppCompatActivity {
 
 
 
+
+
         //--------------------------------delete akun by swipe------------------------------------->
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -191,11 +196,28 @@ public class HutangActivity extends AppCompatActivity {
                     }
                 });
                 AlertDialog confirmDelete = confirm.create();
+                confirmDelete.setCancelable(false);
                 confirmDelete.show();
             }
         }).attachToRecyclerView(recyclerView);
 
         //------------------------------akhir delete akun by swipe--------------------------------->
 
+
+
+
+
+        //--------------------------------backpress------------------------------------------------>
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent back = new Intent(HutangActivity.this, MainActivity.class);
+                startActivity(back);
+                finish();
+            }
+        });
+
+        //-------------------------------akhir backpress------------------------------------------->
     }
 }

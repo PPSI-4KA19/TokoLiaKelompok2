@@ -61,6 +61,7 @@ dependencies {
 
     //implement for pdf
     implementation("com.itextpdf:itext7-core:7.1.3")
+    implementation("com.github.barteksc:android-pdf-viewer:2.8.2")
     //implementation("androidx.core:core:1.6.0")
 
     implementation("androidx.appcompat:appcompat:1.6.1")

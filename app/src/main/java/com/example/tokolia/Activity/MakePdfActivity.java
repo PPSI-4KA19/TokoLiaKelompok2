@@ -7,12 +7,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.tokolia.Entites.Produk;
 import com.example.tokolia.Entites.TransaksiProdukCrossRef;
 import com.example.tokolia.R;
 import com.example.tokolia.TokoRepository;
+import com.github.barteksc.pdfviewer.PDFView;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -36,17 +40,29 @@ public class MakePdfActivity extends AppCompatActivity {
     String fileName;
     String idTransaksi;
     String tanggal;
+    Button back;
+    Button openInFolder;
 
     //--------------------------------container as list-------------------------------------------->
     List<Produk> produkList = new ArrayList<>();
     List<TransaksiProdukCrossRef> crossRefs = new ArrayList<>();
     TokoRepository repository;
 
+    PDFView pdfView;
+    File file;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_pdf);
+
+        pdfView = findViewById(R.id.pdfView);
+        openInFolder = findViewById(R.id.buttonBuka);
+        back = findViewById(R.id.buttonBack);
+
+
 
         //get intent - id transaksi, total (jangan lupa di convert string)
         Intent data = getIntent();
@@ -62,22 +78,43 @@ public class MakePdfActivity extends AppCompatActivity {
         }
 
 
-
         try {
             createPdf();
         } catch (FileNotFoundException e){
             e.printStackTrace();
         }
 
-        finish();
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        openInFolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent open = new Intent(Intent.ACTION_VIEW, MediaStore.Downloads.EXTERNAL_CONTENT_URI);
+                open.setType("*/*");
+                startActivity(open);
+            }
+        });
+
+
+
+        //finish();
 
 
     }
 
     private void createPdf() throws FileNotFoundException{
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-        File file = new File(pdfPath, fileName);
+        file = new File(pdfPath, fileName);
         if(file.exists()) {
+
+            pdfView.fromFile(file).load();
+
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setTitle("File Ganda");
             alert.setMessage("Struk sudah dengan nama " + fileName +
@@ -96,6 +133,7 @@ public class MakePdfActivity extends AppCompatActivity {
             });
             AlertDialog dialogbox = alert.create();
             dialogbox.show();
+
         } else {
 
             OutputStream outputStream = new FileOutputStream(file);
@@ -142,7 +180,8 @@ public class MakePdfActivity extends AppCompatActivity {
             table.addCell(new Cell().add(new Paragraph("")).setBorder(Border.NO_BORDER));
 
             //emptyRow
-            table.addCell(new Cell(1, 4).add(new Paragraph("")).setBorder(Border.NO_BORDER));
+            table.addCell(new Cell(1, 4).add(new Paragraph("")).setBorder(Border.NO_BORDER)
+                    .setBorderBottom(new SolidBorder(1)));
 
             //rowBodyRincian
             int total = 0;
@@ -172,7 +211,9 @@ public class MakePdfActivity extends AppCompatActivity {
             table.addCell(new Cell().add(new Paragraph(String.format("Rp %,d", total)).setBold()).setBorder(Border.NO_BORDER)
                     .setTextAlignment(TextAlignment.RIGHT));
 
-            document.setTopMargin(30);
+            table.setHorizontalAlignment(HorizontalAlignment.CENTER);
+            table.setMarginTop(50);
+
             document.add(table);
             document.close();
 

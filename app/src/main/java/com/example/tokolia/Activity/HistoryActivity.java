@@ -1,5 +1,6 @@
 package com.example.tokolia.Activity;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -76,7 +77,6 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
-
         //-----------------------------akhir recycler view----------------------------------------->
 
 
@@ -84,18 +84,6 @@ public class HistoryActivity extends AppCompatActivity {
 
 
         //-----------------------------click on recycler item-------------------------------------->
-        /*
-        adapter.setOnClickItemListener(new ListHistoryAdapter.HistoryListener() {
-            @Override
-            public void onClick(Transaksi transaksi) {
-                Intent toRincian = new Intent(HistoryActivity.this,
-                        RincianHistoryActivity.class);
-                toRincian.putExtra("idTransaksi",transaksi.getId_transaksi());
-                toRincian.putExtra("tanggal",transaksi.getTanggal());
-                startActivity(toRincian);
-                finish();
-            }
-        });*/
 
         adapter.setOnClickItemListener(new ListHistoryAdapter.HistoryListener() {
             @Override
@@ -146,5 +134,19 @@ public class HistoryActivity extends AppCompatActivity {
 
         //------------------------------akhir spinner---------------------------------------------->
 
+
+
+        //--------------------------------backpress------------------------------------------------>
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent back = new Intent(HistoryActivity.this, MainActivity.class);
+                startActivity(back);
+                finish();
+            }
+        });
+
+        //-----------------------------akhir backpress--------------------------------------------->
     }
 }

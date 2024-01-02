@@ -161,8 +161,14 @@ public class TambahProduk extends AppCompatActivity {
 
         String nama = namaProduk.getText().toString();
         int jual = Integer.parseInt(hargaJual.getText().toString());
-        int modal = Integer.parseInt(hargaModal.getText().toString());
-        int jumlahStok = Integer.parseInt(stok.getText().toString());
+        int modal = 0;
+        if(!(hargaModal.getText().toString().equals(""))){
+            modal = Integer.parseInt(hargaModal.getText().toString());
+        }
+        int jumlahStok = 0;
+        if(!(stok.getText().toString().equals(""))){
+            jumlahStok = Integer.parseInt(stok.getText().toString());
+        }
 
         Intent intent = new Intent();
         intent.putExtra("namaProduk",nama);

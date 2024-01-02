@@ -190,7 +190,14 @@ public class MainActivity extends AppCompatActivity {
                             adapter.setTransaksiList(container);
                         }
                     });
-                } else {}
+                } else {
+                    viewModel.getAllTransaksi().observe(MainActivity.this, new Observer<List<Transaksi>>() {
+                        @Override
+                        public void onChanged(List<Transaksi> transaksis) {
+                            adapter.setTransaksiList(transaksis);
+                        }
+                    });
+                }
             }
         });
 

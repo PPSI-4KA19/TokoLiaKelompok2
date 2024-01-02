@@ -78,7 +78,7 @@
 
                 <Button
                     android:id="@+id/buttonAddProdukToTransaksi"
-                    android:layout_width="150dp"
+                    android:layout_width="190dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/white"
