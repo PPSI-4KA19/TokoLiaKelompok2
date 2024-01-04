@@ -30,6 +30,10 @@ public class EditProduk extends AppCompatActivity {
     String kategori;
     String desc;
 
+    //------------------------------container to send intent--------------------------------------->
+    int modalEdit = 0;
+    int stokEdit = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +127,13 @@ public class EditProduk extends AppCompatActivity {
                    alert.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                        @Override
                        public void onClick(DialogInterface dialog, int which) {
-                           updateProduk();
+                           if(hargaModal.getText().toString().equals("") || stok.getText().toString().equals("")){
+                                updateProduk();
+                           } else {
+                               modalEdit = Integer.parseInt(hargaModal.getText().toString());
+                               stokEdit = Integer.parseInt(stok.getText().toString());
+                               updateProduk();
+                           }
                        }
                    });
 
@@ -188,8 +198,8 @@ public class EditProduk extends AppCompatActivity {
         Intent intent = new Intent();
         intent.putExtra("namaProduk",namaProduk.getText().toString());
         intent.putExtra("hargaJual",Integer.parseInt(hargaJual.getText().toString()));
-        intent.putExtra("hargaModal",Integer.parseInt(hargaModal.getText().toString()));
-        intent.putExtra("stok",Integer.parseInt(stok.getText().toString()));
+        intent.putExtra("hargaModal",modalEdit);
+        intent.putExtra("stok",stokEdit);
 
         if(produkId != -1){
             intent.putExtra("produkId",produkId);

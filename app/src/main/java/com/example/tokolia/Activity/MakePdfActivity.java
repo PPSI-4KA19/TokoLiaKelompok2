@@ -219,6 +219,7 @@ public class MakePdfActivity extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(),
                     "Struk berhasil disimpan di folder Download",Toast.LENGTH_SHORT).show();
+            finish();
         }
 
 

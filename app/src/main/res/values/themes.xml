@@ -6,8 +6,8 @@
         <item name="colorPrimaryVariant">@color/mainorange</item>
         <item name="colorOnPrimary">@color/white</item>
 
-        <item name="colorSecondary">@color/lightorange</item>
-        <item name="colorSecondaryVariant">@color/lightorange</item>
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorSecondaryVariant">@color/white</item>
         <item name="colorOnSecondary">@color/mainorange</item>
     </style>
 
