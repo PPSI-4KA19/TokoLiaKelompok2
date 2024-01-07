@@ -28,6 +28,12 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
 
+/**
+    Halaman kategori pada fitur Produk :
+    1. menampilkan kategori (recycler view, grid layout span 2)
+    2. klik kategori untuk melihat produk pada kategori (adapter.setOnClick method)
+    3. tombol add kategori (button.setOnClick method)
+ */
 public class produkkategori extends AppCompatActivity {
 
 
@@ -36,9 +42,8 @@ public class produkkategori extends AppCompatActivity {
     Button buttonTambahKategori;
 
     //-------------launcher untuk send data-------------------------------------------------------->
-
     ActivityResultLauncher<Intent> activityResultLauncherAddKategori;
-
+    //--------------------------------------------------------------------------------------------->
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +95,10 @@ public class produkkategori extends AppCompatActivity {
 
 
         //--------------------------DELETE KATEGORI------------------------------------------------>
-        //antisipasi ada request delete
+        /*
+            check intent deleteMsg dari ListProduk. Intent code deleteMsg cuma akan kembali kalau
+            di ListProduk Activity di klik tombol delete (logo trash)
+         */
         Intent checkMsg = getIntent();
         String deleteMsg = checkMsg.getStringExtra("deleteMsg");
         String deleteKategori = checkMsg.getStringExtra("deleteKategori");
@@ -159,7 +167,10 @@ public class produkkategori extends AppCompatActivity {
     }
 
 
-
+    /*
+        registerActivityAddKategori :
+        request result dari activity = TambahKategori
+     */
     public void registerActivityAddKategori(){
 
         activityResultLauncherAddKategori = registerForActivityResult(new ActivityResultContracts.StartActivityForResult()

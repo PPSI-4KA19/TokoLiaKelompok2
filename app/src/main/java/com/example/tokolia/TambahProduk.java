@@ -16,7 +16,11 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
 import com.google.android.material.appbar.MaterialToolbar;
-
+/**
+ *  halaman tambah produk :
+ *  isi edit text namaproduk, hargajual, hargamodal, stok
+ *  send intent, value dari edit text -> ListProduk handle insert via VM
+ */
 public class TambahProduk extends AppCompatActivity {
 
     MaterialToolbar toolbar;

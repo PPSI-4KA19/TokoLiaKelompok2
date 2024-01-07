@@ -30,6 +30,15 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
 
+/**
+    Halaman menampilkan produk di dalam kategori pada fungsi Produk :
+    1. menampilkan produk (recycler view, linear layout)
+    2. delete kategori (toolbar.setOnClick method, send intent ke produkkategori, delete semua produk
+       with kategori = '...')
+    3. button add produk (button.setOnClick method -> start TambahProduk activity)
+    4. edit produk (adapter.setOnClick -> start EditProduk activity dengan elemen terisi dari intent)
+    5. delete produk (swipe itemtouchhelper left -> MV.delete produk (position based on adapter) )
+ */
 public class ListProduk extends AppCompatActivity {
 
     Button addProduk;
@@ -43,7 +52,7 @@ public class ListProduk extends AppCompatActivity {
     ActivityResultLauncher<Intent> activityResultLauncherAddProduk;
     ActivityResultLauncher<Intent> activityResultLauncherEditProduk;
 
-    ActivityResultLauncher<Intent> activityResultLauncherEditKategori;
+    //ActivityResultLauncher<Intent> activityResultLauncherEditKategori;
 
     //containers untuk nyimpan message intent
     String namaKategori;
@@ -65,6 +74,9 @@ public class ListProduk extends AppCompatActivity {
 
 
         //---------------------------setup tampilan recycler--------------------------------------->
+        /*
+            M V VM
+         */
 
         recyclerProduk = findViewById(R.id.recyclerProduk);
         recyclerProduk.setLayoutManager(new LinearLayoutManager(this));
@@ -94,7 +106,10 @@ public class ListProduk extends AppCompatActivity {
 
 
         //---------------------------hapus kategori------------------------------------------------>
-
+        /*
+            click trash icon di toolbar -> send intent to produkkategori
+            produkkategori yg handle delete
+         */
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -247,7 +262,9 @@ public class ListProduk extends AppCompatActivity {
 
     }
 
-    //method untuk terima intent dari kategori
+    /*
+     *  terima data dari intent dari produkkategori
+     */
     public void getData(){
         Intent i = getIntent();
         namaKategori = i.getStringExtra("kategori");
@@ -256,7 +273,10 @@ public class ListProduk extends AppCompatActivity {
         toolbar.setTitle(namaKategori);
     }
 
-
+    /*
+     *  set actvity result untuk addproduk
+     *  wait for result dari TambahProduk
+     */
     public void registerActivityAddProduk(){
 
         activityResultLauncherAddProduk =
@@ -283,6 +303,10 @@ public class ListProduk extends AppCompatActivity {
 
     }
 
+    /*
+     *  set activity result untuk edit produk
+     *  get intent dari EditProduk
+     */
     public void registerActivityEditProduk(){
         activityResultLauncherEditProduk = registerForActivityResult(new ActivityResultContracts
                 .StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {

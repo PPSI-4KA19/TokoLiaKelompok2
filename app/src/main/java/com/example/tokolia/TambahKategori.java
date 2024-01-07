@@ -18,6 +18,11 @@ import com.google.android.material.appbar.MaterialToolbar;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  halaman tambah kategori :
+ *  isi edittext -> send intent ke produkkategori, produkkategori handle insert via VM
+ *  string intent : nama kategori, desc kategori
+ */
 public class TambahKategori extends AppCompatActivity {
 
     MaterialToolbar toolbar;

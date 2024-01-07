@@ -33,6 +33,12 @@ import com.google.android.material.appbar.MaterialToolbar;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+    Halaman utama aplikasi :
+    1. navigasi ke 6 halaman fitur = produk, transaksi, restok, history, hutang/kasbon, dashboard (this)
+    2. tampilan keuangan = pemasukkan, pengeluaran, hutang
+ */
 public class MainActivity extends AppCompatActivity {
 
     MaterialToolbar toolbar;

@@ -45,7 +45,7 @@ public class KasbonViewModel extends AndroidViewModel {
     }
 
     public void deleteKasbon(Kasbon kasbon){
-        repository.updateKasbon(kasbon);
+        repository.deleteKasbon(kasbon);
     }
 
     public LiveData<List<Kasbon>> getAllKasbons(){

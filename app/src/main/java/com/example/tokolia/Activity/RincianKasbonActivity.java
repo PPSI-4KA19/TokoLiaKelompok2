@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -26,6 +27,7 @@ import com.example.tokolia.R;
 import com.example.tokolia.VM.KasbonViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RincianKasbonActivity extends AppCompatActivity {
@@ -40,8 +42,10 @@ public class RincianKasbonActivity extends AppCompatActivity {
     int total;
     int sisa;
 
+    //container string intent dari HutangActivity
     String namaKasbon;
 
+    //VM + Adapter
     KasbonViewModel kasbonViewModel;
     RincianKasbonAdapter adapter;
 
@@ -57,13 +61,19 @@ public class RincianKasbonActivity extends AppCompatActivity {
         batal = findViewById(R.id.buttonRincianCancel);
         bayar = findViewById(R.id.buttonRincianBayar);
 
+        //get intent
         Intent getData = getIntent();
         namaKasbon = getData.getStringExtra("namaKasbon");
         total = getData.getIntExtra("totalHutang",0);
         sisa = getData.getIntExtra("sisaHutang",0);
 
-        //-------------------------------toolbar--------------------------------------------------->
 
+
+        //-------------------------------toolbar--------------------------------------------------->
+        /*
+        back arrow set back to HutangActivity + finish()
+        set title toolbar
+         */
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,8 +120,9 @@ public class RincianKasbonActivity extends AppCompatActivity {
 
 
 
-        //-------------------------------set dialog box-------------------------------------------->
 
+
+        //-------------------------------set dialog box-------------------------------------------->
 
         totalHutang.setText(String.format("%,d",total));
         sisaHutang.setText(String.format("%,d",sisa));
@@ -152,6 +163,7 @@ public class RincianKasbonActivity extends AppCompatActivity {
                     cicil.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            dialog1.dismiss();
                             AlertDialog.Builder bayar = new AlertDialog.Builder(RincianKasbonActivity.this);
                             View mView = getLayoutInflater().inflate(R.layout.layout_custom_dialogbayarhutang, null);
 
@@ -193,7 +205,6 @@ public class RincianKasbonActivity extends AppCompatActivity {
                                         }
                                     }
                                     dialog2.dismiss();
-                                    dialog1.dismiss();
                                     Intent goback = new Intent(RincianKasbonActivity.this, HutangActivity.class);
                                     startActivity(goback);
                                     finish();
@@ -206,12 +217,47 @@ public class RincianKasbonActivity extends AppCompatActivity {
                     penuh.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Kasbon updateLunas = new Kasbon(namaKasbon, total, 0);
-                            kasbonViewModel.updateKasbon(updateLunas);
                             dialog1.dismiss();
-                            Intent go = new Intent(RincianKasbonActivity.this, HutangActivity.class);
-                            startActivity(go);
-                            finish();
+
+                            AlertDialog.Builder build = new AlertDialog.Builder(RincianKasbonActivity.this);
+                            build.setTitle("Melunaskan Semua Hutang");
+                            build.setMessage("Anda yakin ingin melunaskan semua hutang atas nama "+ namaKasbon + " ?");
+                            build.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Kasbon updateLunas = new Kasbon(namaKasbon, 0, 0);
+                                    kasbonViewModel.updateKasbon(updateLunas);
+
+                                    /*
+                                    merubah semua transaksi dengan kolom kasbon berisikan nama akun, menjadi null
+                                    dan merubah (?) jenis menjadi penjualan (?)
+                                     */
+                                    List<Transaksi> container = new ArrayList<>();
+                                    container = adapter.getTransaksis();
+                                    for(Transaksi item : container){
+                                        Transaksi baru = new Transaksi(item.getId_transaksi(),
+                                                item.getTanggal(),"penjualan",null);
+                                        kasbonViewModel.updateTransaksi(baru);
+                                    }
+
+                                    dialog.dismiss();
+                                    Intent go = new Intent(RincianKasbonActivity.this, HutangActivity.class);
+                                    startActivity(go);
+                                    finish();
+                                }
+                            });
+
+                            build.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    dialog1.show();
+                                }
+                            });
+                            //build.setCancelable(false);
+                            AlertDialog dialog2 = build.create();
+                            dialog2.show();
+
                         }
                     });
 

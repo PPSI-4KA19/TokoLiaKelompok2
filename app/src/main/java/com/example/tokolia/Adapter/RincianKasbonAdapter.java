@@ -21,8 +21,6 @@ public class RincianKasbonAdapter extends RecyclerView.Adapter<RincianKasbonAdap
 
     List<TransaksiProdukCrossRef> crossRefs = new ArrayList<>();
 
-    int total = 0;
-
     @NonNull
     @Override
     public RincianKasbonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,6 +38,7 @@ public class RincianKasbonAdapter extends RecyclerView.Adapter<RincianKasbonAdap
         holder.tanggal.setText(currentTransaksi.getTanggal());
 
         String id = currentTransaksi.getId_transaksi();
+        int total = 0;
         for (TransaksiProdukCrossRef item : crossRefs) {
             if(item.getId_transaksi().equals(id)){
                 total += item.getTotal();
@@ -63,6 +62,10 @@ public class RincianKasbonAdapter extends RecyclerView.Adapter<RincianKasbonAdap
     public void setCrossRefs(List<TransaksiProdukCrossRef> crossRefs){
         this.crossRefs = crossRefs;
         notifyDataSetChanged();
+    }
+
+    public List<Transaksi> getTransaksis(){
+        return transaksis;
     }
 
     class RincianKasbonViewHolder extends RecyclerView.ViewHolder{

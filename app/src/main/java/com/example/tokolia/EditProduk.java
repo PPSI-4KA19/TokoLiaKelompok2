@@ -14,6 +14,11 @@ import android.widget.EditText;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
+/**
+ *  halaman edit produk, layout edit dan edit text sama dengan TambahProduk
+ *  start : getIntent dari ListProduk -> set di edit text
+ *  save : send intent -> ListProduk handle insert via VM
+ */
 public class EditProduk extends AppCompatActivity {
 
     EditText namaProduk;

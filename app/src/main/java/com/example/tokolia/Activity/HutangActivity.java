@@ -189,10 +189,30 @@ public class HutangActivity extends AppCompatActivity {
                 confirm.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        kasbonViewModel.deleteKasbon(adapter.getKasbon(viewHolder.getAdapterPosition()));
-                        Toast.makeText(getApplicationContext()
-                                , "Akun Kasbon sudah dihapus", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
+                        /**
+                         *  allow delete hanya kalau total hutang = 0
+                         *  (baru dibuat atau sudah bayar lunas)
+                         */
+                        if(!(adapter.getKasbon(viewHolder.getAdapterPosition()).getTotal_hutang()>0)) {
+                            kasbonViewModel.deleteKasbon(adapter.getKasbon(viewHolder.getAdapterPosition()));
+                            Toast.makeText(getApplicationContext()
+                                    , "Akun Kasbon sudah dihapus", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        } else {
+                            dialog.dismiss();
+                            AlertDialog.Builder reject = new AlertDialog.Builder(HutangActivity.this);
+                            reject.setTitle("Gagal Menghapus");
+                            reject.setMessage("Tidak bisa menghapus akun kasbon apabila belum lunas");
+                            reject.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            AlertDialog rejectDelete = reject.create();
+                            rejectDelete.show();
+                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                        }
                     }
                 });
                 AlertDialog confirmDelete = confirm.create();

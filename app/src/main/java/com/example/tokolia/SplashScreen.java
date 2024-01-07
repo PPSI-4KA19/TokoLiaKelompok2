@@ -10,6 +10,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ *  Loading page sebelum ke Main
+ *  delay set 3000milis
+ */
 public class SplashScreen extends AppCompatActivity {
 
     ImageView image;
@@ -37,6 +41,6 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
 
             }
-        },3000);
+        },3000); //set waktu loading
     }
 }
